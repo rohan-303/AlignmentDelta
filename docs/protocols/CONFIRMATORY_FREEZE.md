@@ -1,0 +1,3 @@
+# Confirmatory freeze boundary
+
+After the technical pilot and before confirmatory runs, freeze: final model matrix and exact revisions; direction source/split and estimator; token position and site rule; alpha grid; random-control seeds; benchmark revisions and item manifests; evaluator revisions; generation settings; outcome definitions; analysis plan; multiplicity procedure; exclusion/retry rules; and manual-validation sampling. After this freeze, scientific-outcome-driven model, item, site, evaluator, dose, or scoring changes are prohibited. Structural/technical amendments require versioning and a new confirmatory plan.

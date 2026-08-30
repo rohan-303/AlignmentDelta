@@ -1,0 +1,3 @@
+# XSTest scoring
+
+The source-defined safe/unsafe grouping and scoring procedure will be reproduced from the pinned XSTest paper/repository commit. The primary measure is prompt-level category-specific behavior, reported separately for benign-boundary over-refusal and unsafe-request response. A rule/keyword detector may be used only as an implementation of the source procedure after source verification, not as a claim of general evaluator validity. A fixed blinded manual subset checks classification; disagreements are retained, not silently overwritten. Exact detector rules, item sample, and any source evaluator dependency remain a pre-use gate.

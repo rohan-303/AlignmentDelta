@@ -1,0 +1,5 @@
+# Step 2.2 statistical decisions
+
+Primary contrast: refusal direction versus matched orthogonal random directions across nominal alpha, with aligned baseline and negative-alpha counter-steering described separately. The primary outcome family is objective non-refusal behavior, with safety discrimination, calibration, and semantic consistency reported as distinct families; utility and technical diagnostics are supporting.
+
+Interpret checkpoints, not model families: one checkpoint per family cannot establish family-level generalization. Bootstrap resampling is clustered at the prompt/item level, preserving paired conditions and variants. Permutation tests exchange direction labels within item/model/site strata, not individual generated tokens. Apply a predeclared Benjamini-Hochberg FDR procedure across the defined primary contrast/outcome set; exploratory outcomes are labelled separately. Exact mixed-model choices are `pilot-gated` only for structural convergence information, never pilot-outcome-gated.

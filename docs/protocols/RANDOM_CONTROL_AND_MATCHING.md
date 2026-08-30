@@ -1,0 +1,5 @@
+# Random-direction controls and perturbation matching
+
+For hidden dimension `d`, refusal direction `r` with `||r||=1`, and seeded generator `G`, draw `z ~ N(0,I_d)` using PyTorch CPU generator seeds `[20260830, 20260831, 20260832, 20260833]`. Compute `z_perp = z - (z^T r)r`, reject/resample if its norm is nonfinite or below `1e-12`, and set `q=z_perp/||z_perp||`. Accept only when `abs(q^T r) <= 1e-6` in float64. Four controls are a pilot minimum for checking variability across directions, not a power claim or universal requirement.
+
+All controls use the same hook site and nominal alpha grid. For each item, record activation RMS, absolute/RMS intervention change, projection magnitude, and fraction of refusal-direction projection removed. Primary comparisons are made at nominal alpha; achieved-dose diagnostics are reported alongside them. If matching is needed, a scale factor may be estimated from `direction_validation` technical activations only, using a predeclared rule and bounded scale; retrospective rescaling against safety, calibration, consistency, or any primary outcome is prohibited.

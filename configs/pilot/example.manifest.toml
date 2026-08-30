@@ -1,0 +1,15 @@
+# Non-executable placeholder manifest. No dataset content is stored here.
+schema_version = "0.1"
+manifest_id = "pilot-example-placeholder"
+source_policy = "stable-source-id-only"
+
+[[items]]
+source = "PLACEHOLDER_SOURCE"
+stable_id = "PLACEHOLDER_ID"
+role = "direction_train"
+partition = "direction_train"
+
+# Allowed roles: direction_train, direction_validation, baseline_refusal_check,
+# dose_technical_check, evaluator_validation, utility_calibration_check,
+# consistency_check, pilot_evaluation, confirmatory_evaluation.
+# The validator must reject duplicate source+stable_id across incompatible roles.
