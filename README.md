@@ -2,7 +2,7 @@
 
 ## Status
 
-Step 2.0 structured literature audit is in progress/completed as documented under `docs/literature/`; novelty remains provisional and model/benchmark selection is deferred to Step 2.1.
+Step 2.3 resolved the pre-execution implementation specification but concluded `BLOCKED`, as documented under `docs/protocols/GO_NO_GO.md`; Step 3.0 remains deferred pending authenticated model-term checks, evaluator feasibility, and item-level data gates.
 
 **Research infrastructure / reproducible ML runtime (Step 1.1).** No scientific experiments, model downloads, datasets, findings, or result files exist yet.
 

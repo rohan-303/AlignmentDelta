@@ -1,7 +1,7 @@
 # Utility and calibration task
 
-**Decision:** use standard MMLU rather than MMLU-Pro for the pilot because its original public repository and known-answer multiple-choice format are simpler to audit and support direct probability extraction. MMLU-Pro remains a possible confirmatory alternative only after a separate protocol amendment.
+Primary source: MMLU from `hendrycks/test`, pinned repository revision `4450500f923c49f1fb1dd3d99108a0bd9717b660`.
 
-Source: `hendrycks/test`, `master`, GitHub-reported MIT license. Freeze the exact commit/file hashes before use. Use a predeclared compact subject-stratified pilot subset and a confirmatory item manifest generated from source IDs without looking at model performance; do not choose subjects after scoring.
+Use the standard test split and preserve the repository’s subject/file labels and answer encoding. The pilot item-selection algorithm is: sort eligible source IDs lexicographically within subject; choose a fixed predeclared number of subjects using seed `20260830` and a domain-stratified subject list; choose a fixed predeclared number of IDs per selected subject using the same deterministic ordering; never inspect model outputs when selecting items.
 
-The pilot manifest records source revision, split, subjects, item IDs, answer labels, and file hash. The exact item count is a protocol parameter bounded before execution, not an observed dataset fact. No MMLU data are downloaded in Step 2.2. License and redistribution status must be rechecked before any copy leaves the source environment.
+Exact item IDs are generated only when the pinned files are made available in the data stage. The repository reports MIT metadata, but selected-file hashes and redistribution terms must be attached before use. Status: `cleared_with_restrictions`.

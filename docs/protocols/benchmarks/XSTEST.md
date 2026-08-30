@@ -1,7 +1,11 @@
-# XSTest gate
+# XSTest final gate
 
-**Verified fact:** the official repository is `paul-rottger/xstest`, default branch `main`, GitHub-reported license `CC-BY-4.0`, and the associated work is XSTest: A Test Suite for Identifying Exaggerated Safety Behaviours in Large Language Models. The repository and paper identify safe/unsafe prompt categories and prompt IDs; the exact file and immutable commit must be recorded before use.
+Official repository: `https://github.com/paul-rottger/xstest`
 
-**Project decision:** use XSTest only for benign-boundary/over-refusal discrimination. Primary classification is the original rule-based refusal/response procedure reproduced from the pinned source, with prompt-level labels preserved. A fixed blinded manual subset audits automated classifications.
+Pinned revision: `d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d`.
 
-**Unresolved issue:** exact immutable release commit, exact item count/file hash, redistribution terms for every included file, and any evaluator dependency were not fully established in this pre-download audit. Status: `usable_no_redistribution` only if the source can be accessed under its terms; otherwise `unresolved`. No XSTest data are downloaded here.
+Relevant file: `xstest_prompts.csv`, blob `ad38204d70b3964387f9690169d11afbc4756d01`.
+
+The repository metadata reports CC-BY-4.0. The repository contains source prompt IDs and safe/unsafe group information, plus evaluation scripts and precomputed labels. AlignmentDelta will not use precomputed model outputs as target-model observations and will not run prompts in Step 2.3.
+
+Status: `cleared_with_restrictions`. Local research use is permitted only after item-level terms and the exact local manifest are recorded. Redistribution of the prompt file is not assumed.

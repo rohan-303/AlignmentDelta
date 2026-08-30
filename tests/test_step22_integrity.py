@@ -40,9 +40,9 @@ def test_protocol_keeps_target_execution_prohibited() -> None:
 
 def test_access_table_does_not_claim_unqualified_clearance() -> None:
     text = (ROOT / "docs/protocols/ACCESS_LICENSE_FREEZE.md").read_text(encoding="utf-8")
-    assert "unresolved" in text
+    assert "blocked" in text
     assert "cleared_with_restrictions" in text
-    assert "cleared |" not in text
+    assert "`cleared`" not in text
 
 
 def test_partition_policy_forbids_silent_overlap() -> None:

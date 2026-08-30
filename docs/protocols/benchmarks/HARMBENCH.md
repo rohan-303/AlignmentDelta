@@ -1,7 +1,15 @@
-# HarmBench gate
+# HarmBench final gate
 
-**Verified fact:** the official repository is `centerforaisafety/HarmBench`, default branch `main`, GitHub-reported MIT repository license. HarmBench provides standardized harmful-behavior evaluation materials and an official automated evaluation framework.
+Official repository: `https://github.com/centerforaisafety/HarmBench`
 
-**Project decision:** use only the pinned standard behavior subset approved before confirmatory evaluation. Record category labels, item IDs, repository commit, file hashes, and the exact evaluator source/revision. Refusal/compliance is not treated as validated harmful capability.
+Pinned revision: `8e1604d1171fe8a48d8febecd22f600e462bdcdd`.
 
-**Evaluator gate:** the official classifier/evaluator identifier, revision, model size, access/gating, dependency set, and local RTX 3060 feasibility must be verified from the official implementation before use. A repository license alone does not prove that model weights or dependencies have compatible terms. No HarmBench data or classifier is downloaded in Step 2.2. Status: `unresolved` pending this verification.
+Relevant standard text files:
+
+- `data/behavior_datasets/harmbench_behaviors_text_all.csv`, blob `8a6b423d85e9acdc168c57a6a957755cfa86c4cb`;
+- `data/behavior_datasets/harmbench_behaviors_text_test.csv`, blob `a150df81f1efa24496f1495e1b96822fd403e339`;
+- `data/behavior_datasets/harmbench_behaviors_text_val.csv`, blob `0cfc6c419122c58df0ccbda6351c0265dc72b125`.
+
+The official evaluation documentation identifies `cais/HarmBench-Llama-2-13b-cls` for classifier scoring and states that the classifier is Llama 2 13B. Exact classifier revision, model terms, and local/cloud resource feasibility remain blocked. Repository MIT metadata does not settle those separate terms.
+
+Status: `cleared_with_restrictions` for source pinning only; the benchmark cannot enter a scientific run until the classifier gate is closed.
