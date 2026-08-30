@@ -60,6 +60,7 @@ data/**/*.npy
 # Generated artifacts and scientific outputs: keep policy files, ignore payloads
 artifacts/generated/
 artifacts/engineering/step_3_0/
+artifacts/pilot/step_3_1/
 artifacts/diagnostics/
 artifacts/**/*.tmp
 artifacts/**/*.log

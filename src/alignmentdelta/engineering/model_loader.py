@@ -77,7 +77,7 @@ def load_model(spec: ModelSpec, device: str = "cuda:0", dtype_name: str = "bf16"
 def file_hashes(snapshot: Path) -> dict[str, dict[str, Any]]:
     result: dict[str, dict[str, Any]] = {}
     for path in sorted(snapshot.rglob("*")):
-        if path.is_file() and not path.is_symlink():
+        if path.is_file():
             digest = hashlib.sha256(path.read_bytes()).hexdigest()
             result[str(path.relative_to(snapshot))] = {"bytes": path.stat().st_size, "sha256": digest}
     return result
