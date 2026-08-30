@@ -2,9 +2,9 @@
 
 ## Status
 
-Step 2.4 closed the permitted data/evaluator gates for engineering and concluded `ENGINEERING_GO` with `CONFIRMATORY_BLOCKED`, as documented under `docs/protocols/STEP_2_4_DECISION.md`. Step 3 engineering work remains separately authorization-gated; confirmatory research remains deferred.
+Step 2.4 closed the permitted data/evaluator gates for engineering and concluded `ENGINEERING_GO` with `CONFIRMATORY_BLOCKED`, as documented under `docs/protocols/STEP_2_4_DECISION.md`. Step 3.0 completed the separately scoped real-model engineering validation for pinned Qwen 1.5B; confirmatory research remains blocked and deferred.
 
-**Research infrastructure / reproducible ML runtime (Step 1.1).** No scientific experiments, model downloads, datasets, findings, or result files exist yet.
+**Research infrastructure / reproducible ML runtime (Step 1.1).** Step 3.0 downloaded only the pinned Qwen engineering checkpoint into the external Hugging Face cache and wrote ignored technical diagnostics under `artifacts/engineering/step_3_0/`. No scientific experiment, benchmark result, finding, or result file exists.
 
 ## Objective
 
@@ -45,7 +45,7 @@ python -m venv .venv
 .venv/Scripts/python -m pip install -e ".[dev]"
 ```
 
-The lightweight bootstrap remains available with `uv sync --extra dev`. The reproducible ML runtime is opt-in with `uv sync --extra ml --extra dev`; it includes Torch, Transformers, Datasets, Accelerate, Hugging Face Hub, Safetensors, NumPy, Pandas, SciPy, scikit-learn, and psutil. Sentence-Transformers and bitsandbytes are not installed. No model or benchmark is downloaded by this step.
+The lightweight bootstrap remains available with `uv sync --extra dev`. The reproducible ML runtime is opt-in with `uv sync --extra ml --extra dev`; it includes Torch, Transformers, Datasets, Accelerate, Hugging Face Hub, Safetensors, NumPy, Pandas, SciPy, scikit-learn, and psutil. Sentence-Transformers and bitsandbytes are not installed. Step 3.0 model downloads are explicit, pinned, and external to Git.
 
 ## Development commands
 
@@ -76,3 +76,11 @@ A scientific experiment configuration describes a condition; an execution profil
 All future scientific runs must be traceable to their Git commit, configuration, exact model revision, and environment metadata. Failed and invalidated runs remain auditable. Synthetic/mock data is permitted only inside tests and must never enter scientific result directories. See [`docs/RESEARCH_INTEGRITY.md`](docs/RESEARCH_INTEGRITY.md).
 
 This repository currently contains no scientific results. It is research infrastructure, not a validated safety or capability claim.
+
+Step 3.0 engineering validation command:
+
+```bash
+env -u PYTHONPATH uv run --extra ml --extra dev python -m alignmentdelta.engineering.step3 --model qwen2.5-1.5b --profile local_dev
+```
+
+The command performs no generation and does not run XSTest, HarmBench, MMLU, calibration, or confirmatory statistical analysis.
