@@ -20,7 +20,7 @@ Later work may vary intervention strength (`M -> T_alpha(M)`) and, only where te
 
 - `src/alignmentdelta/` — minimal Python package
 - `tests/` — package and infrastructure tests
-- `configs/` — version-controlled configurations
+- `configs/` — version-controlled configurations; execution profiles are separate from scientific experiment configs
 - `docs/protocols/` — pre-specified scientific protocols
 - `docs/decisions/` — architecture and research decision records
 - `experiments/` — version-controlled orchestration definitions
@@ -54,7 +54,22 @@ uv run --extra dev mypy src
 uv build
 ```
 
-## Research integrity
+## Experiment-contract commands
+
+Validate the sanitized, non-executable schema example without network access:
+
+```bash
+uv run --extra dev python -m alignmentdelta.experiments.validate_config configs/experiments/example.schema.toml
+```
+
+Create only an auditable `planned` run manifest under `artifacts/`:
+
+```bash
+uv run --extra dev python -m alignmentdelta.experiments.dry_run configs/experiments/example.schema.toml
+```
+
+A scientific experiment configuration describes a condition; an execution profile describes runtime behavior. The stable `experiment_condition_id` identifies the scientific condition, while every concrete execution receives a unique `run_id`. The repository still contains no AlignmentDelta scientific results.
+
 
 All future scientific runs must be traceable to their Git commit, configuration, exact model revision, and environment metadata. Failed and invalidated runs remain auditable. Synthetic/mock data is permitted only inside tests and must never enter scientific result directories. See [`docs/RESEARCH_INTEGRITY.md`](docs/RESEARCH_INTEGRITY.md).
 

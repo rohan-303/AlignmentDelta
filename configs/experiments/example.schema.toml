@@ -1,0 +1,47 @@
+# This is a sanitized, non-executable schema example. It names no real model,
+# benchmark, prompt, or scientific condition.
+schema_version = "0.1"
+phase = "pilot"
+
+[study]
+name = "<EXPERIMENT_NAME>"
+description = "<EXPERIMENT_DESCRIPTION>"
+protocol_version = "0.1-draft"
+
+[source_model]
+identifier = "<MODEL_ID>"
+revision = "<MODEL_REVISION_OR_NULL>"
+tokenizer_identifier = "<TOKENIZER_ID>"
+tokenizer_revision = "<TOKENIZER_REVISION_OR_NULL>"
+trust_remote_code = false
+
+[transformation]
+type = "<TRANSFORMATION_TYPE>"
+implementation_version = "<TRANSFORMATION_IMPLEMENTATION_VERSION>"
+parameters = { parameter_name = "<PARAMETER_VALUE>" }
+intervention_strength = 0.0
+parent_source_checkpoint = "<MODEL_ID>"
+
+[evaluation]
+benchmark_identifier = "<BENCHMARK_ID>"
+benchmark_revision = "<BENCHMARK_REVISION>"
+split = "<SPLIT>"
+evaluator_implementation_version = "<EVALUATOR_VERSION>"
+
+[prompting]
+chat_template_identifier = "<CHAT_TEMPLATE_ID_OR_HASH>"
+system_prompt_identifier = "<SYSTEM_PROMPT_ID_OR_HASH>"
+formatting_version = "<PROMPT_FORMATTING_VERSION>"
+
+[decoding]
+deterministic = true
+temperature = 0.0
+top_p = 1.0
+top_k = 0
+max_new_tokens = 1
+stop_conditions = []
+
+[reproducibility]
+seeds = [0]
+execution_profile = "cpu_test"
+planned_replicates = 1
