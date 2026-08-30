@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Packaging
+build/
+dist/
+*.whl
+
+# Editors and OS
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Hugging Face and ML caches
+.cache/
+.huggingface/
+.cache/huggingface/
+.cache/huggingface_hub/
+~/.cache/huggingface/
+*.safetensors
+*.bin
+*.ckpt
+*.pt
+*.pth
+*.onnx
+
+# Large external/generated data
+data/raw/
+data/downloads/
+data/cache/
+data/**/*.jsonl
+data/**/*.parquet
+data/**/*.arrow
+data/**/*.npz
+data/**/*.npy
+
+# Generated artifacts and scientific outputs: keep policy files, ignore payloads
+artifacts/generated/
+artifacts/**/*.tmp
+artifacts/**/*.log
+results/generated/
+results/**/*.tmp
+results/**/*.log
+
+# Notebook state
+.ipynb_checkpoints/
+
+# Local logs and scratch
+*.log
+*.tmp
+scratch/
