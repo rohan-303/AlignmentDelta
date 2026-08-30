@@ -1,7 +1,21 @@
-# Deterministic direction train/validation split
+# Direction split — Step 2.4 final
 
-The original pinned repository already supplies train/validation/test files. AlignmentDelta does not re-split by observed behavior. It uses the source train partition for `direction_train` and source validation partition for `direction_validation`, preserving source categories and IDs.
+AlignmentDelta uses only `harmful_train.json` and `harmless_train.json` from the pinned refusal-direction repository for direction estimation. The original source validation/test files are provenance-only because the audit found overlap with HarmBench.
 
-If a source requires a project-level split, construct it deterministically: canonicalize stable IDs, sort lexicographically by `(source, stable_id)`, apply a seeded PyTorch/CPU-independent hash assignment with seed `20260830`, and allocate 80% train/20% validation within each source category. No model outputs enter the assignment. The resulting item manifest records the exact IDs and SHA-256 hash. A duplicate or overlap with any evaluation role is a hard failure.
+Algorithm:
 
-This preserves the paper’s explicit source split where available and gives a deterministic, outcome-independent rule for any additional approved source.
+1. derive stable record IDs as SHA-256 of the canonical sorted JSON record, truncated to 24 hexadecimal characters;
+2. sort IDs lexicographically;
+3. assign the first `floor(0.80*n)` items to `direction_train`;
+4. assign the remainder to `direction_validation`;
+5. preserve harmful/harmless roles;
+6. prohibit any outcome-dependent reassignment.
+
+Resulting counts:
+
+| Source | Total | Direction train | Direction validation |
+|---|---:|---:|---:|
+| harmful train | 260 | 208 | 52 |
+| harmless train | 18,793 | 15,034 | 3,759 |
+
+The exact IDs are version-controlled in `configs/manifests/refusal_direction_source.toml`. Raw prompts remain outside Git.

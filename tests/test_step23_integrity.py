@@ -83,6 +83,7 @@ def test_blocked_decision_and_deferred_execution_are_explicit() -> None:
     tracker = (ROOT / "docs/protocols/PRE_EXECUTION_GATE_TRACKER.md").read_text(encoding="utf-8")
     assert "current state" in tracker
     assert "blocked" in tracker
-    assert "deferred_by_design" in tracker
-    for phrase in ("target weights", "inference", "scientific measurements"):
+    assert "deferred_to_engineering_validation" in tracker
+    assert "deferred_to_confirmatory_freeze" in tracker
+    for phrase in ("target-model", "weights", "inference", "scientific", "results"):
         assert phrase in tracker

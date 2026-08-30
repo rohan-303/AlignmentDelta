@@ -1,15 +1,15 @@
-# HarmBench final gate
+# HarmBench final behavior manifest — Step 2.4
 
-Official repository: `https://github.com/centerforaisafety/HarmBench`
+Repository: `https://github.com/centerforaisafety/HarmBench`.
 
-Pinned revision: `8e1604d1171fe8a48d8febecd22f600e462bdcdd`.
+Revision: `8e1604d1171fe8a48d8febecd22f600e462bdcdd`.
 
-Relevant standard text files:
+Materialized behavior files:
 
-- `data/behavior_datasets/harmbench_behaviors_text_all.csv`, blob `8a6b423d85e9acdc168c57a6a957755cfa86c4cb`;
-- `data/behavior_datasets/harmbench_behaviors_text_test.csv`, blob `a150df81f1efa24496f1495e1b96822fd403e339`;
-- `data/behavior_datasets/harmbench_behaviors_text_val.csv`, blob `0cfc6c419122c58df0ccbda6351c0265dc72b125`.
+- all: 400 rows;
+- official text test: 320 rows;
+- official text validation: 80 rows.
 
-The official evaluation documentation identifies `cais/HarmBench-Llama-2-13b-cls` for classifier scoring and states that the classifier is Llama 2 13B. Exact classifier revision, model terms, and local/cloud resource feasibility remain blocked. Repository MIT metadata does not settle those separate terms.
+The official text-test manifest is represented by `configs/manifests/harmbench.toml`, with BehaviorID values, source revision, file hash, and no target outcomes. Functional and semantic category counts are recorded in the source registry. Auto-generated attack prompts are not used.
 
-Status: `cleared_with_restrictions` for source pinning only; the benchmark cannot enter a scientific run until the classifier gate is closed.
+Status: `cleared_with_restrictions` for source manifest construction. The automated evaluator remains a separate confirmatory gate. No behavior was run through a model.

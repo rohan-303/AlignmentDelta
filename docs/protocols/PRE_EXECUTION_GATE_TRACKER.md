@@ -1,26 +1,37 @@
-# Pre-execution gate tracker
+# Pre-execution gate tracker — Step 2.4
 
-**Audit date:** 2026-08-30. No target weights, evaluation datasets, inference, or scientific measurements were run.
+**Audit date:** 2026-08-30. No target-model or evaluator weights, inference, completions, benchmark scoring, or scientific results were produced.
 
-| gate_id | description | evidence required | current state | evidence source | resolution | remaining action |
-|---|---|---|---|---|---|---|
-| M1 | Primary model exact revision/terms | HF API, pinned metadata, license text | blocked | official HF API/cards; gated endpoints | Qwen metadata/license reviewed; Llama/Gemma access blocked | authenticated access review before use |
-| M2 | No-remote-code compatibility for all included models | revision-pinned config/tokenizer load | blocked | Transformers run; HF access errors | Qwen/Smol pass; Llama/Gemma cannot be inspected anonymously | authenticated metadata check or exclude |
-| M3 | Meta-device architecture for all included models | config-only empty construction | blocked | Accelerate + Transformers | Qwen/Smol pass; gated families blocked | complete gated-family inspection |
-| D1 | Prior direction source pin | immutable repo commit/tree/license | resolved | official GitHub API/repository | pinned at `9d852fae1a9121c78b29142de733cb1340770cc3` | retain provenance in run |
-| D2 | Direction data identity and split | source files, blob IDs, counts | resolved | pinned repository tree and loader | train/val/test filenames and available counts/blob IDs recorded; larger-file counts remain a data-stage verification | verify larger-file counts at data stage without staging text |
-| D3 | AlignmentDelta leakage-safe source | disjoint source IDs and terms | blocked | prior source + benchmark provenance | source family is identified but exact cross-benchmark overlap audit is not complete | generate/verify item-level manifest before pilot |
-| D4 | Executable site score | refusal-only held-out formula | resolved | pinned selector source + project protocol | formula and tie-break frozen | implement/test without primary outcomes |
-| S1 | Random-direction null inference | exchangeability analysis | resolved | statistical audit | label permutation removed; sampled-reference/bootstrap plan frozen | implement planned estimator |
-| S2 | Confirmatory random-direction count | empirical-null resolution and workload | resolved | exact combinatorial calculation | pilot=4; provisional confirmatory=16 | final precision plan before confirmatory freeze |
-| S3 | Multiplicity | predeclared error-control method | resolved | statistical design | Holm FWER selected for three primary families | preserve in analysis config |
-| X1 | XSTest exact commit/files/terms | official repo metadata | cleared_with_restrictions | `paul-rottger/xstest` commit/API | commit, file/blob, CC-BY-4.0 recorded | verify intended local-use interpretation |
-| H1 | HarmBench exact commit/standard subset | official repo metadata | cleared_with_restrictions | `centerforaisafety/HarmBench` commit/API | commit and official text test file recorded | verify intended local-use interpretation |
-| H2 | HarmBench classifier identity/feasibility | official evaluator docs/model metadata | blocked | HarmBench README/evaluation docs | classifier identity known; 13B resource/access gate not cleared | verify revision/terms and provision suitable GPU |
-| U1 | MMLU exact revision/terms | official repo commit/files | cleared_with_restrictions | `hendrycks/test` commit/API | repo revision and MIT metadata recorded | pin exact files before data-stage use |
-| C1 | Consistency construct | fixed transformations and IDs | resolved | project protocol | deterministic transformations selected | create validated item manifest |
-| I1 | Step 3 implementation contracts | inputs/outputs/invariants | resolved | project specifications | contracts created in `docs/implementation/` | implement only after blocked gates close |
-| B1 | Target-model weight download | access and storage budget | deferred_by_design | project safety boundary | explicitly prohibited in Step 2.3 | Step 3 only after GO review |
-| B2 | Scientific inference/evaluation | all gates and frozen manifests | deferred_by_design | project safety boundary | explicitly prohibited in Step 2.3 | Step 3 only after GO review |
+Formal statuses are limited to `resolved`, `blocked`, `deferred_to_engineering_validation`, and `deferred_to_confirmatory_freeze`.
 
-`resolved_with_limits` is descriptive evidence language; the formal tracker state is `resolved` only where the remaining action is administrative/data-stage verification rather than an unknown scientific method. Blocked gates prevent Step 3.0.
+| gate_id | description | evidence required | current state | affects_engineering | affects_confirmatory | evidence source | resolution | remaining action |
+|---|---|---|---|---:|---:|---|---|---|
+| M1 | Qwen 1.5B exact revision/access/terms | immutable revision and terms | resolved | true | true | HF metadata/model card | revision `989aa7980e4cf806f80c7fef2b1adb7bc71aa306`; Apache-2.0 metadata; metadata access passed | retain terms in run provenance |
+| M2 | Llama/Gemma matrix access | authenticated metadata and terms | blocked | false | true | official gated HF endpoints | anonymous access not granted; no credentials bypassed | user must accept official model terms and authenticate through HF before inspection |
+| M3 | Qwen no-remote-code compatibility | config/tokenizer load | resolved | true | true | Transformers run | Qwen config/tokenizer passed with `trust_remote_code=False`; no `auto_map` | rerun as Step 3 preflight |
+| M4 | Meta architecture validation | config-only construction | resolved | true | true | Accelerate/Transformers | Qwen2 meta construction passed | rerun as Step 3 preflight |
+| D1 | Refusal source pin | immutable repo/tree/license | resolved | true | true | GitHub source | commit `9d852fae1a9121c78b29142de733cb1340770cc3`, Apache-2.0 | retain provenance |
+| D2 | Direction source files/counts/hashes | materialized source metadata | resolved | true | true | ignored source cache and registry | six files materialized; counts/hashes/IDs recorded | do not stage raw data |
+| D3 | Leakage-safe direction split | deterministic role manifest | resolved | true | true | overlap audit/manifests | train-only source files split by sorted IDs at 80/20; source val/test excluded | preserve manifest |
+| D4 | Refusal score/tokens | pinned code and tokenizer encoding | resolved | true | true | source code + Qwen tokenizer | epsilon, float64, final-position log-odds, IDs `[40,2121]` frozen | implement/test in engineering |
+| D5 | Site selection | executable held-out formula | resolved | true | true | pinned selector + protocol | refusal-only score, KL threshold, pruning, tie-break frozen | implement/test in engineering |
+| S1 | Random-control inference | nonexchangeability audit | resolved | true | true | statistical protocol | no ordinary label permutation; cluster bootstrap/reference factor frozen | implement in engineering |
+| S2 | Direction counts | workload/resolution calculation | resolved | true | true | statistical protocol | pilot=4; provisional confirmatory=16; precision review required | confirmatory precision freeze |
+| S3 | Multiplicity | fixed correction | resolved | false | true | statistical protocol | Holm FWER across three primary families | retain |
+| X1 | XSTest source | exact file/hash/count/terms | resolved | false | true | materialized CSV/registry | 450 items; IDs/hash/CC-BY-4.0 recorded | final use-terms check |
+| H1 | HarmBench behavior source | exact file/hash/count/terms | resolved | false | true | materialized CSV/registry | official test file has 320 items; IDs/hash recorded | final use-terms check |
+| H2 | HarmBench classifier | official identity/validity/terms | resolved | false | true | HF API and HarmBench README | PLAN_A candidate pinned; 13B standard/contextual classifier selected | cloud resource and final terms preflight |
+| H3 | HarmBench resource feasibility | sufficient unquantized GPU | blocked | false | true | parameter/storage metadata | local 6GB RTX 3060 unsuitable; cloud allocation not provisioned | obtain documented suitable cloud GPU |
+| U1 | MMLU source | official archive/hash/items/terms | blocked | false | true | `hendrycks/test` README + archive URL | archive host timed out; no mirror substituted | retrieve authoritative archive |
+| C1 | Consistency transformations | source items and deterministic pair records | blocked | false | true | consistency protocol + MMLU gate | transformation rules frozen; source items unavailable | materialize MMLU, build/validate pair manifest |
+| I1 | Step 3 implementation contracts | inputs/outputs/invariants | resolved | true | true | `docs/implementation/` | contracts complete | execute only within Step 3 scope |
+| B1 | Target model weights | explicit authorization | deferred_to_engineering_validation | true | false | project safety boundary | permitted only after separate Step 3 authorization | do not download in Step 2.4 |
+| B2 | Target inference | explicit authorization | deferred_to_engineering_validation | true | false | project safety boundary | technical checks only after Step 3 authorization | no scientific inference |
+| B3 | Confirmatory data collection | all final gates | deferred_to_confirmatory_freeze | false | true | project safety boundary | withheld until confirmatory gates close | no benchmark scoring |
+
+## Readiness result
+
+- `ENGINEERING_GO`: all required engineering gates are resolved.
+- `CONFIRMATORY_BLOCKED`: Llama/Gemma access, HarmBench cloud resources, MMLU archive, and consistency artifact remain blocked.
+
+The Step 2.3 blockers remain visible and are classified by readiness impact rather than silently removed.

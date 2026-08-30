@@ -1,0 +1,7 @@
+schema_version = "2.4.0"
+status = "blocked_source_archive_unavailable"
+source = "hendrycks/test"
+revision = "4450500f923c49f1fb1dd3d99108a0bd9717b660"
+archive_url = "https://people.eecs.berkeley.edu/~hendrycks/data.tar"
+selection_rule = "deterministic subject-stratified selection with seed 20260830; exact IDs generated only after archive verification"
+items = []

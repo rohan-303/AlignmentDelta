@@ -1,11 +1,15 @@
-# XSTest final gate
+# XSTest final manifest — Step 2.4
 
-Official repository: `https://github.com/paul-rottger/xstest`
+Repository: `https://github.com/paul-rottger/xstest`.
 
-Pinned revision: `d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d`.
+Revision: `d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d`.
 
-Relevant file: `xstest_prompts.csv`, blob `ad38204d70b3964387f9690169d11afbc4756d01`.
+File: `xstest_prompts.csv`.
 
-The repository metadata reports CC-BY-4.0. The repository contains source prompt IDs and safe/unsafe group information, plus evaluation scripts and precomputed labels. AlignmentDelta will not use precomputed model outputs as target-model observations and will not run prompts in Step 2.3.
+SHA-256: `11783fb294ed017473ee53c207d71f2161c7672c8d0b037501e78387f801cb5a`.
 
-Status: `cleared_with_restrictions`. Local research use is permitted only after item-level terms and the exact local manifest are recorded. Redistribution of the prompt file is not assumed.
+Count: 450 rows. Stable IDs are the CSV `id` field. The source contains safe/unsafe labels and categories in the `type`, `label`, and `focus` fields; exact category counts are preserved in the source registry rather than reproducing prompt text here.
+
+License metadata: CC-BY-4.0.
+
+Status: `cleared_with_restrictions`. The source is materialized outside Git and represented by `configs/manifests/xstest.toml`. No prompts were run through a model.

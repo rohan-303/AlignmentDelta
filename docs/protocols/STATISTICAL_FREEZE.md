@@ -1,7 +1,11 @@
-# Step 2.3 statistical freeze
+# Step 2.4 statistical freeze
 
-Primary contrast: refusal direction versus the mean/reference distribution of orthogonal random directions over alpha, with aligned baseline and counter-steering separately described. Random directions are not exchangeable labels with the refusal direction; ordinary refusal-vs-random label permutation is removed.
+Primary contrast: the refusal-direction dose-response versus the mean/reference distribution of independently generated orthogonal random directions, with baseline and counter-steering reported separately.
 
-Bootstrap at the prompt/item cluster, retaining all paired conditions and random directions. If an empirical-null rank statistic is used, use only a prespecified null bank and the plus-one corrected rank p-value. A hierarchical random-direction effect is optional and pilot-gated for structure, not outcomes. Interpret results per checkpoint, not as family-level generalization.
+The refusal direction is selected from refusal-related validation data and is not exchangeable with random directions. Ordinary label permutation is prohibited.
 
-Use Holm FWER across the three predeclared primary outcome families. Supporting/exploratory outcomes are not silently included in the primary multiplicity family.
+Primary uncertainty uses item-cluster bootstrap resampling, preserving paired conditions and all random directions within each item cluster. Random-direction identity is a sampled reference/nuisance factor, not independent scientific replication. Effects are checkpoint-specific.
+
+Empirical-null tail p-values are diagnostic only unless a prespecified null bank has sufficient resolution. With 16 null directions, the plus-one minimum is `1/17`, so it is not a primary significance procedure for the three Holm-corrected primary families.
+
+Multiplicity: Holm FWER across the three predeclared primary outcome families. No correction is selected based on anticipated significance.

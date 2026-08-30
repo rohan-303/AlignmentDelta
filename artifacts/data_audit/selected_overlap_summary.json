@@ -1,0 +1,27 @@
+{
+  "schema_version": "2.4.0",
+  "selected_direction_policy": "only deterministic split of harmful_train and harmless_train",
+  "comparisons": [
+    {
+      "source": "paul-rottger/xstest",
+      "path": "xstest_prompts.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "recommendation": "none detected"
+    },
+    {
+      "source": "centerforaisafety/HarmBench",
+      "path": "data/behavior_datasets/harmbench_behaviors_text_test.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "recommendation": "none detected"
+    },
+    {
+      "source": "centerforaisafety/HarmBench",
+      "path": "data/behavior_datasets/harmbench_behaviors_text_val.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "recommendation": "none detected"
+    }
+  ]
+}

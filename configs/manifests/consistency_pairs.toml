@@ -1,0 +1,6 @@
+schema_version = "2.4.0"
+status = "blocked_source_items_unavailable"
+construct = "behavioral consistency under meaning-preserving perturbations"
+seed = 20260830
+transformations = ["mmlu_option_order_permutation", "prompt_wrapper_variation"]
+pairs = []

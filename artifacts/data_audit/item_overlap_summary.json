@@ -1,0 +1,366 @@
+{
+  "schema_version": "2.4.0",
+  "normalization": "lowercase; non-alphanumeric runs collapsed to spaces; text retained only in memory",
+  "pairs": [
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_train.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmful_val.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_train.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmful_test.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 1,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "exclude exact/normalized overlaps from one role before evaluation"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_train.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmless_train.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_train.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmless_val.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_train.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmless_test.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_train.json",
+      "b": "paul-rottger/xstest::xstest_prompts.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_train.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_all.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_train.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_test.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_train.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_val.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_val.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmful_test.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_val.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmless_train.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_val.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmless_val.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_val.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmless_test.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_val.json",
+      "b": "paul-rottger/xstest::xstest_prompts.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_val.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_all.csv",
+      "exact_hash_overlap_count": 39,
+      "normalized_text_overlap_count": 39,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "exclude exact/normalized overlaps from one role before evaluation"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_val.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_test.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_val.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_val.csv",
+      "exact_hash_overlap_count": 39,
+      "normalized_text_overlap_count": 39,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "exclude exact/normalized overlaps from one role before evaluation"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_test.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmless_train.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_test.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmless_val.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_test.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmless_test.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_test.json",
+      "b": "paul-rottger/xstest::xstest_prompts.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_test.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_all.csv",
+      "exact_hash_overlap_count": 160,
+      "normalized_text_overlap_count": 161,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "exclude exact/normalized overlaps from one role before evaluation"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_test.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_test.csv",
+      "exact_hash_overlap_count": 158,
+      "normalized_text_overlap_count": 159,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "exclude exact/normalized overlaps from one role before evaluation"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmful_test.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_val.csv",
+      "exact_hash_overlap_count": 2,
+      "normalized_text_overlap_count": 2,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "exclude exact/normalized overlaps from one role before evaluation"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_train.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmless_val.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_train.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmless_test.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_train.json",
+      "b": "paul-rottger/xstest::xstest_prompts.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_train.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_all.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_train.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_test.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_train.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_val.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_val.json",
+      "b": "andyrdt/refusal_direction::dataset/splits/harmless_test.json",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_val.json",
+      "b": "paul-rottger/xstest::xstest_prompts.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_val.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_all.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_val.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_test.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_val.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_val.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_test.json",
+      "b": "paul-rottger/xstest::xstest_prompts.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_test.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_all.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_test.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_test.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "andyrdt/refusal_direction::dataset/splits/harmless_test.json",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_val.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "paul-rottger/xstest::xstest_prompts.csv",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_all.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "paul-rottger/xstest::xstest_prompts.csv",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_test.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "paul-rottger/xstest::xstest_prompts.csv",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_val.csv",
+      "exact_hash_overlap_count": 0,
+      "normalized_text_overlap_count": 0,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "none detected"
+    },
+    {
+      "a": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_all.csv",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_test.csv",
+      "exact_hash_overlap_count": 317,
+      "normalized_text_overlap_count": 317,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "exclude exact/normalized overlaps from one role before evaluation"
+    },
+    {
+      "a": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_all.csv",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_val.csv",
+      "exact_hash_overlap_count": 78,
+      "normalized_text_overlap_count": 78,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "exclude exact/normalized overlaps from one role before evaluation"
+    },
+    {
+      "a": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_test.csv",
+      "b": "centerforaisafety/HarmBench::data/behavior_datasets/harmbench_behaviors_text_val.csv",
+      "exact_hash_overlap_count": 2,
+      "normalized_text_overlap_count": 2,
+      "near_duplicate_status": "not_run",
+      "exclusion_recommendation": "exclude exact/normalized overlaps from one role before evaluation"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 ## Status
 
-Step 2.3 resolved the pre-execution implementation specification but concluded `BLOCKED`, as documented under `docs/protocols/GO_NO_GO.md`; Step 3.0 remains deferred pending authenticated model-term checks, evaluator feasibility, and item-level data gates.
+Step 2.4 closed the permitted data/evaluator gates for engineering and concluded `ENGINEERING_GO` with `CONFIRMATORY_BLOCKED`, as documented under `docs/protocols/STEP_2_4_DECISION.md`. Step 3 engineering work remains separately authorization-gated; confirmatory research remains deferred.
 
 **Research infrastructure / reproducible ML runtime (Step 1.1).** No scientific experiments, model downloads, datasets, findings, or result files exist yet.
 

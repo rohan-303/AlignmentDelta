@@ -1,7 +1,11 @@
-# Evaluator feasibility decision
+# Harmful-output evaluator feasibility — Step 2.4
 
-Decision: `unresolved` is not carried into the final gate table; the operational status is **blocked**.
+Selected plan: **PLAN_A — official 13B classifier, cloud-only**.
 
-The official HarmBench classifier is the preferred scientific scorer in principle, but its 13B scale, bfloat16 requirement, six-shard distribution, gated/terms provenance, and unknown local peak memory make the 6 GB RTX 3060 path unverified. A free-cloud GPU may be suitable, but no specific free allocation or runtime is guaranteed. Raw BF16 weight memory is approximately 26 GB before runtime overhead; this is arithmetic, not a measured feasibility claim.
+Model: `cais/HarmBench-Llama-2-13b-cls`, revision `bda705349d1144fa618770bea64d99ce54e3835b`.
 
-No smaller substitute is adopted without a published validation source and a pre-outcome protocol amendment. Manual validation remains secondary, not a silent replacement for the automated primary scorer. Therefore the HarmBench evaluator gate blocks Step 3.0.
+The HF metadata reports 13,015,864,320 BF16 parameters and approximately 26.0 GB of raw BF16 parameter memory/storage scale before runtime overhead. The local RTX 3060 has approximately 6 GB VRAM, so unquantized local execution is not feasible. No throughput or runtime estimate is claimed.
+
+Confirmatory use requires a documented cloud allocation with sufficient memory for the unquantized model and runtime overhead; a 40 GB-class GPU is the planning target. Quantization is not allowed for confirmatory scoring unless agreement with the unquantized reference is separately validated.
+
+The 7B Mistral `val-cls` model is not selected as confirmatory primary scoring because it is explicitly a validation classifier. Blinded manual scoring remains a secondary audit, not a silent substitute.
