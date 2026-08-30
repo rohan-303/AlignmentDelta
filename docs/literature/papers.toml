@@ -1,0 +1,136 @@
+# Verified records; metadata checked against primary URLs on 2026-08-30 UTC.
+
+[[papers]]
+id="ablating-safety-2026"
+title="Ablating Safety: Mechanisms for Removing Alignment in Language Models for Security Applications"
+authors=["Isaac David","Arthur Gervais"]
+year=2026
+publication_type="preprint"
+venue="arXiv"
+doi=""
+arxiv_id="2605.17413"
+canonical_url="https://arxiv.org/abs/2605.17413"
+code_url=""
+publication_status="arXiv preprint, version 1"
+date_verified="2026-08-30"
+relevance_categories=["controlled-removal","capability","attempt-vs-success","robustness","dose-response","utility-safety"]
+
+[[papers]]
+id="uncensored-ai-wild-2025"
+title="Uncensored AI in the Wild: Tracking Publicly Available and Locally Deployable LLMs"
+authors=[]
+year=2025
+publication_type="preprint"
+venue="Preprints.org"
+doi=""
+arxiv_id=""
+canonical_url="https://www.preprints.org/manuscript/202509.1334"
+code_url="https://github.com/bahrad/uncensored-llm-tracking"
+publication_status="preprint; primary page returned 403 during audit"
+date_verified="2026-08-30"
+relevance_categories=["uncensored-ecosystem","evaluation-methodology"]
+
+[[papers]]
+id="refusal-single-direction-2024"
+title="Refusal in Language Models Is Mediated by a Single Direction"
+authors=["Andy Arditi","Oscar Obeso","Aaquib Syed","Daniel Paleka","Nina Panickssery","Wes Gurnee","Neel Nanda"]
+year=2024
+publication_type="preprint"
+venue="arXiv"
+doi=""
+arxiv_id="2406.11717"
+canonical_url="https://arxiv.org/abs/2406.11717"
+code_url="https://github.com/andyrdt/refusal_direction"
+publication_status="arXiv preprint, version 3"
+date_verified="2026-08-30"
+relevance_categories=["refusal-mechanism","activation-intervention","capability","reversibility"]
+
+[[papers]]
+id="shallow-safety-2024"
+title="Safety Alignment Should Be Made More Than Just a Few Tokens Deep"
+authors=["Xiangyu Qi","Ashwinee Panda","Kaifeng Lyu","Xiao Ma","Subhrajit Roy","Ahmad Beirami","Prateek Mittal","Peter Henderson"]
+year=2024
+publication_type="preprint"
+venue="arXiv"
+doi=""
+arxiv_id="2406.05946"
+canonical_url="https://arxiv.org/abs/2406.05946"
+code_url=""
+publication_status="arXiv preprint, version 1"
+date_verified="2026-08-30"
+relevance_categories=["alignment-robustness","fine-tuning","behavioral-drift"]
+
+[[papers]]
+id="harmbench-2024"
+title="HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal"
+authors=["Mantas Mazeika","Long Phan","Xuwang Yin","Andy Zou","Zifan Wang","Norman Mu","Elham Sakhaee","Nathaniel Li","Steven Basart","Bo Li","David Forsyth","Dan Hendrycks"]
+year=2024
+publication_type="conference paper"
+venue="NeurIPS 2024"
+doi=""
+arxiv_id="2402.04249"
+canonical_url="https://arxiv.org/abs/2402.04249"
+code_url="https://github.com/centerforaisafety/HarmBench"
+publication_status="NeurIPS 2024 poster/proceedings record"
+date_verified="2026-08-30"
+relevance_categories=["evaluation-methodology","robustness","refusal"]
+
+[[papers]]
+id="strongreject-2024"
+title="A StrongREJECT for Empty Jailbreaks"
+authors=["Alexandra Souly","Qingyuan Lu","Dillon Bowen","Tu Trinh","Elvis Hsieh","Sana Pandey","Pieter Abbeel","Justin Svegliato","Scott Emmons","Olivia Watkins","Sam Toyer"]
+year=2024
+publication_type="conference paper"
+venue="NeurIPS 2024"
+doi=""
+arxiv_id="2402.10260"
+canonical_url="https://neurips.cc/virtual/2024/poster/97752"
+code_url="https://strong-reject.readthedocs.io/en/latest/"
+publication_status="NeurIPS 2024 poster record"
+date_verified="2026-08-30"
+relevance_categories=["evaluation-methodology","capability","jailbreak-evaluation"]
+
+[[papers]]
+id="xstest-2024"
+title="XSTest: A Test Suite for Identifying Exaggerated Safety Behaviours in Large Language Models"
+authors=["Paul Röttger","Hannah Kirk","Bertie Vidgen","Giuseppe Attanasio","Federico Bianchi","Dirk Hovy"]
+year=2024
+publication_type="conference paper"
+venue="NAACL 2024"
+doi="10.18653/v1/2024.naacl-long.301"
+arxiv_id=""
+canonical_url="https://aclanthology.org/2024.naacl-long.301/"
+code_url=""
+publication_status="published in NAACL 2024, Volume 1: Long Papers"
+date_verified="2026-08-30"
+relevance_categories=["over-refusal","evaluation-methodology","safety-discrimination"]
+
+[[papers]]
+id="or-bench-2025"
+title="OR-Bench: An Over-Refusal Benchmark for Large Language Models"
+authors=["Justin Cui","Wei-Lin Chiang","Ion Stoica","Cho-Jui Hsieh"]
+year=2025
+publication_type="conference paper"
+venue="ICML 2025"
+doi=""
+arxiv_id="2405.20947"
+canonical_url="https://arxiv.org/abs/2405.20947"
+code_url="https://github.com/justincui03/or-bench"
+publication_status="accepted to ICML 2025; arXiv version 5"
+date_verified="2026-08-30"
+relevance_categories=["over-refusal","evaluation-methodology","safety-discrimination"]
+
+[[papers]]
+id="confident-calibrated-complicit-2026"
+title="Confident, Calibrated, or Complicit: Safety Alignment and Ideological Bias in LLM Hate Speech Detection"
+authors=["Sanjeevan Selvaganapathy","Mehwish Nasim"]
+year=2026
+publication_type="conference paper"
+venue="ACL 2026"
+doi="10.18653/v1/2026.acl-long.1594"
+arxiv_id="2509.00673"
+canonical_url="https://aclanthology.org/2026.acl-long.1594/"
+code_url=""
+publication_status="published in ACL 2026, Volume 1: Long Papers"
+date_verified="2026-08-30"
+relevance_categories=["calibration","robustness","uncensored-comparison","capability"]

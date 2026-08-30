@@ -2,6 +2,8 @@
 
 ## Status
 
+Step 2.0 structured literature audit is in progress/completed as documented under `docs/literature/`; novelty remains provisional and model/benchmark selection is deferred to Step 2.1.
+
 **Research infrastructure / reproducible ML runtime (Step 1.1).** No scientific experiments, model downloads, datasets, findings, or result files exist yet.
 
 ## Objective
