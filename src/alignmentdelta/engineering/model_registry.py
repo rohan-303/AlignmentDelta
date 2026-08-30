@@ -29,11 +29,26 @@ QWEN25_1P5B = ModelSpec(
 )
 
 
+QWEN25_3B = ModelSpec(
+    model_id="Qwen/Qwen2.5-3B-Instruct",
+    revision="aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    tokenizer_revision="aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    architecture="Qwen2ForCausalLM",
+    hidden_size=2048,
+    expected_layers=36,
+    trust_remote_code=False,
+    role="primary_technical",
+)
+
+
 def get_model_spec(name: str = "qwen2.5-1.5b") -> ModelSpec:
-    """Return the only model intentionally enabled for Step 3.0."""
-    if name.lower() not in {"qwen2.5-1.5b", QWEN25_1P5B.model_id.lower()}:
-        raise ValueError(f"unsupported Step 3 engineering model: {name}")
-    return QWEN25_1P5B
+    """Return an explicitly registered technical model specification."""
+    normalized = name.lower()
+    if normalized in {"qwen2.5-1.5b", QWEN25_1P5B.model_id.lower()}:
+        return QWEN25_1P5B
+    if normalized in {"qwen2.5-3b", QWEN25_3B.model_id.lower()}:
+        return QWEN25_3B
+    raise ValueError(f"unsupported technical model: {name}")
 
 
 def validate_spec(spec: ModelSpec) -> None:
@@ -42,5 +57,5 @@ def validate_spec(spec: ModelSpec) -> None:
         raise ValueError("model revision must be immutable")
     if spec.trust_remote_code:
         raise ValueError("remote code is prohibited")
-    if spec.role != "engineering":
-        raise ValueError("Step 3.0 accepts engineering models only")
+    if spec.role not in {"engineering", "primary_technical"}:
+        raise ValueError("technical model role is not authorized")

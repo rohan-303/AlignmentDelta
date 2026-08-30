@@ -111,14 +111,21 @@ def achieved_dose(baseline: torch.Tensor, changed: torch.Tensor) -> dict[str, fl
     }
 
 
-def technical_manifest(*, run_id: str, git_commit: str, source_ids: Sequence[str]) -> dict[str, Any]:
+def technical_manifest(
+    *,
+    run_id: str,
+    git_commit: str,
+    source_ids: Sequence[str],
+    schema_version: str = "3.1.0",
+    artifact_root: str = "artifacts/pilot/step_3_1",
+) -> dict[str, Any]:
     return {
-        "schema_version": "3.1.0",
+        "schema_version": schema_version,
         "run_id": run_id,
         "phase": "technical_pilot",
         "scientific_execution": False,
         "engineering_only": True,
-        "artifact_root": "artifacts/pilot/step_3_1",
+        "artifact_root": artifact_root,
         "git_commit": git_commit,
         "source_ids": list(source_ids),
         "step_3_0_history_preserved": True,

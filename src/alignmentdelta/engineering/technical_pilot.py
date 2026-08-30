@@ -24,7 +24,7 @@ from .capture import OnlineMeanDifference, ResidualCapture
 from .controls import orthogonal_control
 from .direction import render_messages, stable_id
 from .model_loader import file_hashes, load_model, write_json
-from .model_registry import get_model_spec
+from .model_registry import ModelSpec, get_model_spec
 from .projection import transform_block_output
 from .qwen_adapter import Qwen2Adapter
 from .refusal import refusal_score, refusal_token_metadata
@@ -607,16 +607,26 @@ def _cache_size(path: Path) -> int:
     return sum(item.stat().st_size for item in path.rglob("*") if item.is_file()) if path.exists() else 0
 
 
-def run() -> dict[str, Any]:
+def run(
+    *,
+    model_spec: ModelSpec | None = None,
+    artifact_root: Path | None = None,
+    allow_download: bool = False,
+    schema_version: str = "3.1.0",
+    artifact_root_name: str = "artifacts/pilot/step_3_1",
+) -> dict[str, Any]:
     started = time.perf_counter()
-    ARTIFACT_ROOT.mkdir(parents=True, exist_ok=True)
-    spec = get_model_spec()
+    output_root = artifact_root or ARTIFACT_ROOT
+    output_root.mkdir(parents=True, exist_ok=True)
+    spec = model_spec or get_model_spec()
     git_commit = _git_commit()
     if not torch.cuda.is_available():
         raise RuntimeError("Step 3.1 requires CUDA")
     dtype_name = "bf16" if torch.cuda.is_bf16_supported() else "fp16"
     device = torch.device("cuda:0")
-    snapshot = Path(snapshot_download(repo_id=spec.model_id, revision=spec.revision, local_files_only=True))
+    snapshot = Path(
+        snapshot_download(repo_id=spec.model_id, revision=spec.revision, local_files_only=not allow_download)
+    )
     loaded = load_model(spec, device=str(device), dtype_name=dtype_name)
     adapter = Qwen2Adapter(loaded.model)
     layers = candidate_layers_full(adapter.block_count())
@@ -624,17 +634,17 @@ def run() -> dict[str, Any]:
         raise RuntimeError("eligible-layer boundary mismatch")
     policy = _sample_policy()
     records, ids_by_role = _records_from_policy(policy)
-    write_json(ARTIFACT_ROOT / "source_selection_manifest.json", policy)
+    write_json(output_root / "source_selection_manifest.json", policy)
     snapshot_metadata: dict[str, Any] = {"snapshot": str(snapshot), "files": file_hashes(snapshot)}
-    write_json(ARTIFACT_ROOT / "model_snapshot_manifest.json", snapshot_metadata)
+    write_json(output_root / "model_snapshot_manifest.json", snapshot_metadata)
     environment = {
         "python": sys.version,
         "torch": torch.__version__,
         "torch_cuda": torch.version.cuda,
         "psutil": psutil.__version__,
     }
-    write_json(ARTIFACT_ROOT / "environment_manifest.json", environment)
-    environment_hash = hashlib.sha256((ARTIFACT_ROOT / "environment_manifest.json").read_bytes()).hexdigest()
+    write_json(output_root / "environment_manifest.json", environment)
+    environment_hash = hashlib.sha256((output_root / "environment_manifest.json").read_bytes()).hexdigest()
     token_meta = refusal_token_metadata(loaded.tokenizer)
     sentinel_before = {name: tensor_hash(value) for name, value in list(loaded.model.state_dict().items())[:2]}
     benign = "Please return the integer that results from adding two and two."
@@ -707,7 +717,7 @@ def run() -> dict[str, Any]:
     direction_artifacts: dict[str, str] = {}
     for layer, direction in directions.items():
         artifact = {
-            "schema_version": "3.1.0",
+            "schema_version": schema_version,
             "phase": "technical_pilot",
             "scientific_execution": False,
             "engineering_only": True,
@@ -727,7 +737,7 @@ def run() -> dict[str, Any]:
             "environment_manifest_hash": environment_hash,
             "selected_site": layer == selected.layer,
         }
-        path = ARTIFACT_ROOT / f"direction_layer_{layer}.json"
+        path = output_root / f"direction_layer_{layer}.json"
         write_artifact(path, artifact)
         direction_artifacts[str(layer)] = hashlib.sha256(path.read_bytes()).hexdigest()
     sentinel_after = {name: tensor_hash(value) for name, value in list(loaded.model.state_dict().items())[:2]}
@@ -737,6 +747,8 @@ def run() -> dict[str, Any]:
         run_id=f"step3.1-{uuid.uuid4().hex[:12]}",
         git_commit=git_commit,
         source_ids=[item for values in ids_by_role.values() for item in values],
+        schema_version=schema_version,
+        artifact_root=artifact_root_name,
     )
     pilot_manifest.update(
         {
@@ -824,7 +836,7 @@ def run() -> dict[str, Any]:
         }
     )
     pilot_manifest["qwen3_feasibility"] = _qwen3_feasibility(pilot_manifest)
-    write_json(ARTIFACT_ROOT / "run_manifest.json", pilot_manifest)
+    write_json(output_root / "run_manifest.json", pilot_manifest)
     return pilot_manifest
 
 

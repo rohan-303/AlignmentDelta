@@ -61,6 +61,7 @@ data/**/*.npy
 artifacts/generated/
 artifacts/engineering/step_3_0/
 artifacts/pilot/step_3_1/
+artifacts/pilot/step_3_2/
 artifacts/diagnostics/
 artifacts/**/*.tmp
 artifacts/**/*.log
