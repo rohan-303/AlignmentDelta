@@ -1,0 +1,10 @@
+[profile]
+name = "local_dev"
+preferred_device = "cuda"
+allow_quantization = true
+preferred_precision = "auto"
+deterministic = true
+seed = 20260830
+batch_size = 1
+num_workers = 0
+cache_path = "~/.cache/alignmentdelta"

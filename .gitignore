@@ -59,6 +59,7 @@ data/**/*.npy
 
 # Generated artifacts and scientific outputs: keep policy files, ignore payloads
 artifacts/generated/
+artifacts/diagnostics/
 artifacts/**/*.tmp
 artifacts/**/*.log
 results/generated/

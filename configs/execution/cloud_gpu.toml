@@ -1,0 +1,10 @@
+[profile]
+name = "cloud_gpu"
+preferred_device = "cuda"
+allow_quantization = false
+preferred_precision = "auto"
+deterministic = true
+seed = 20260830
+batch_size = 1
+num_workers = 0
+cache_path = "~/.cache/alignmentdelta"

@@ -2,7 +2,7 @@
 
 ## Status
 
-**Research infrastructure / bootstrap (Step 1.0).** No scientific experiments, model downloads, datasets, findings, or result files exist yet.
+**Research infrastructure / reproducible ML runtime (Step 1.1).** No scientific experiments, model downloads, datasets, findings, or result files exist yet.
 
 ## Objective
 
@@ -43,7 +43,7 @@ python -m venv .venv
 .venv/Scripts/python -m pip install -e ".[dev]"
 ```
 
-No ML frameworks are installed or required in this bootstrap step. Torch, Transformers, datasets, Accelerate, Sentence-Transformers, and bitsandbytes are intentionally deferred.
+The lightweight bootstrap remains available with `uv sync --extra dev`. The reproducible ML runtime is opt-in with `uv sync --extra ml --extra dev`; it includes Torch, Transformers, Datasets, Accelerate, Hugging Face Hub, Safetensors, NumPy, Pandas, SciPy, scikit-learn, and psutil. Sentence-Transformers and bitsandbytes are not installed. No model or benchmark is downloaded by this step.
 
 ## Development commands
 

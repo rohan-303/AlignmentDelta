@@ -1,0 +1,10 @@
+[profile]
+name = "cpu_test"
+preferred_device = "cpu"
+allow_quantization = false
+preferred_precision = "fp32"
+deterministic = true
+seed = 20260830
+batch_size = 1
+num_workers = 0
+cache_path = "~/.cache/alignmentdelta"
