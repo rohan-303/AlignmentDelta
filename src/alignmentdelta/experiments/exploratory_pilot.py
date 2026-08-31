@@ -161,11 +161,11 @@ def operation_counts(xstest_items: int, calibration_items: int, consistency_pair
         "unique_baseline_states": representations,
         "xstest_generations": xstest_items * states,
         "mmlu_option_scoring_operations": calibration_items * states * 4,
-        "consistency_original_scoring_operations": consistency_pairs * states,
-        "consistency_transformed_scoring_operations": consistency_pairs * states,
+        "consistency_original_scoring_operations": consistency_pairs * states * 4,
+        "consistency_transformed_scoring_operations": consistency_pairs * states * 4,
         "total_forward_operation_estimate": xstest_items * states
         + calibration_items * states * 4
-        + consistency_pairs * states * 2,
+        + consistency_pairs * states * 8,
     }
 
 
@@ -271,9 +271,104 @@ def dry_run(root: Path) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dry-run", action="store_true", required=True)
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--execute", action="store_true")
+    parser.add_argument("--technical-smoke", action="store_true")
+    parser.add_argument("--initialize-run", action="store_true")
+    parser.add_argument("--synthetic", action="store_true")
+    parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--profile")
+    parser.add_argument("--task", choices=("xstest", "mmlu", "consistency", "all"), default="all")
+    parser.add_argument("--config", type=Path)
+    parser.add_argument("--output-root", type=Path, default=Path("artifacts/runs/step_4_0"))
+    parser.add_argument("--master-run-id")
+    parser.add_argument("--chunk-index", type=int, default=0)
+    parser.add_argument("--chunk-count", type=int, default=1)
     parser.add_argument("--root", type=Path, default=Path.cwd())
     args = parser.parse_args(argv)
+    if args.initialize_run:
+        from .production_orchestrator import initialize_master_run
+
+        manifest = initialize_master_run(
+            args.output_root.resolve(), repo_root=args.root.resolve(), master_run_id=args.master_run_id
+        )
+        print(json.dumps(manifest, sort_keys=True))
+        return 0
+    if args.synthetic:
+        from .execution_engine import ExecutionConfig, run_synthetic
+
+        config = ExecutionConfig(
+            args.output_root, "synthetic-step4a", args.task, args.chunk_index, args.chunk_count, True
+        )
+        print(json.dumps(run_synthetic(config, resume=args.resume), sort_keys=True))
+        return 0
+    if args.execute:
+        if args.profile != "cloud_gpu":
+            raise SystemExit("real scientific execution requires --profile cloud_gpu")
+        from .cloud_adapter import (
+            EXPECTED_DIRECTION_SHA256,
+            QwenScientificAdapter,
+            cloud_preflight,
+            load_qwen_model,
+            reconstruct_direction,
+        )
+        from .prepare_cloud_data import hydrate
+        from .production_orchestrator import run_production, validate_master_manifest, validate_technical_gate
+        from .providers import make_production_provider
+
+        output_root = args.output_root.resolve()
+        root = args.root.resolve()
+        manifest = validate_master_manifest(output_root, repo_root=root, require_clean=True)
+        cloud_preflight(root, args.profile, output_root)
+        validate_technical_gate(output_root, manifest)
+        cache_root = Path(
+            os.environ.get("ALIGNMENTDELTA_CACHE", Path.home() / ".cache" / "alignmentdelta" / "source_data")
+        )
+        sources = hydrate(cache_root, verify_only=True)
+        model, tokenizer, _ = load_qwen_model()
+        direction = reconstruct_direction(model, tokenizer, Path(sources["refusal_direction"]["root"]))
+        controls = {}
+        for seed in RANDOM_CONTROL_SEEDS:
+            from alignmentdelta.engineering.controls import orthogonal_control
+
+            controls[seed] = orthogonal_control(direction, seed)[0]
+        adapter = QwenScientificAdapter(model, tokenizer=tokenizer)
+        provider = make_production_provider(cache_root, root)
+        result = run_production(
+            output_root,
+            repo_root=root,
+            adapter=adapter,
+            item_provider=provider,
+            resume=args.resume,
+            technical_state={
+                "direction": direction,
+                "controls": controls,
+                "direction_sha256": EXPECTED_DIRECTION_SHA256,
+                "layer": 27,
+                "hidden_dimension": 2048,
+            },
+            task=None if args.task == "all" else args.task,
+            chunk_index=args.chunk_index,
+            chunk_count=args.chunk_count,
+        )
+        print(json.dumps(result, sort_keys=True))
+        return 0
+    if args.technical_smoke:
+        if args.profile != "cloud_gpu":
+            raise SystemExit("technical smoke requires --profile cloud_gpu")
+        from .cloud_adapter import run_cloud_technical_smoke
+
+        cache_root = Path(
+            os.environ.get("ALIGNMENTDELTA_CACHE", Path.home() / ".cache" / "alignmentdelta" / "source_data")
+        )
+        print(
+            json.dumps(
+                run_cloud_technical_smoke(args.root.resolve(), args.output_root.resolve(), cache_root), sort_keys=True
+            )
+        )
+        return 0
+    if not args.dry_run:
+        raise SystemExit("safe default: use --dry-run or the explicit --synthetic validation mode")
     return dry_run(args.root.resolve())
 
 

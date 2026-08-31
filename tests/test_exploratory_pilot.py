@@ -85,9 +85,9 @@ def test_operation_counts_distinguish_generation_and_option_scoring() -> None:
         "unique_baseline_states": 60,
         "xstest_generations": 744,
         "mmlu_option_scoring_operations": 1488,
-        "consistency_original_scoring_operations": 372,
-        "consistency_transformed_scoring_operations": 372,
-        "total_forward_operation_estimate": 2976,
+        "consistency_original_scoring_operations": 1488,
+        "consistency_transformed_scoring_operations": 1488,
+        "total_forward_operation_estimate": 5208,
     }
 
 

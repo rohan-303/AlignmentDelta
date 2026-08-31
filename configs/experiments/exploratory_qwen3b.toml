@@ -1,0 +1,28 @@
+schema_version = "4.0a"
+phase = "exploratory_pilot"
+scientific_execution = true
+model_id = "Qwen/Qwen2.5-3B-Instruct"
+model_revision = "aa8e72537993ba99e69dfaafa59ed015b17504d1"
+layer = 27
+expected_direction_sha256 = "5a8983bcbe4402096210485f8f9b0191eb35b3de84f46624e2dd9811fd09a3fe"
+operator = "h_prime = (I - alpha r r^T) h"
+alpha_grid = [-0.5, 0.0, 0.25, 0.5, 0.75, 1.0, 1.25]
+control_seeds = [20260830, 20260831, 20260832, 20260833]
+control_sha256 = [
+  "38d450a630cdef7e0c7345987bcc984b5c28297402578bd9186100b5b33209f0",
+  "009fa16cf1e3c536431bf04ff1b236ac684d640cd6a38069ded5327e93149720",
+  "f7f113762e73c16fbd84b9f9d784f1dae42412b92dac49c51db97a77838a992f",
+  "517b821e3aa16de00f89f61b9a7f5892d3fb530fbd7d199f80106d1cfb69a8dc",
+]
+batch_size = 1
+do_sample = false
+max_new_tokens = 256
+trust_remote_code = false
+precision = "bf16"
+quantization = "none"
+device = "cuda:0"
+profile_required = "cloud_gpu"
+minimum_vram_gib = 12
+lifecycle_statuses = ["planned", "running", "completed", "failed", "invalidated"]
+output_root = "artifacts/runs/step_4_0"
+raw_root = "artifacts/runs/step_4_0/protected/raw"

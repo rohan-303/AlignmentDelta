@@ -61,7 +61,9 @@ The recorded tokenizer checks were exactly `I -> [40]` and `As -> [2121]`.
 - Site candidates searched: 28
 - Valid candidates: 8
 - Selected technical site: layer 27
-- Selected direction hash: `5a8983bcbe4402096210485f8f0191eb35b3de84f46624e2dd9811fd09a3fe`
+- Selected direction hash: `5a8983bcbe4402096210485f8f9b0191eb35b3de84f46624e2dd9811fd09a3fe`
+
+> **Erratum (Step 4.0A-R):** An earlier transcription omitted two hexadecimal characters from this digest. The immutable Step 3.2C cloud artifacts, cloud log, and notebook record the 64-character value shown above.
 - Selection score: `8.892019586485093`
 - Top-two score margin: `0.06773119247185377`
 - Site constraints: harmless KL ≤ 0.1 and nonnegative harmless refusal-addition diagnostic
