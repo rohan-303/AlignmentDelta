@@ -7,6 +7,7 @@ from alignmentdelta.experiments.run_manifest import (
     FailureRecord,
     InvalidationRecord,
     RunManifest,
+    RunPhase,
     RunStatus,
     transition_status,
 )
@@ -19,6 +20,7 @@ def manifest(status: RunStatus = RunStatus.PLANNED, **kwargs: object) -> RunMani
         "experiment_condition_id": "condition-placeholder-001",
         "created_at_utc": "2026-01-01T00:00:00Z",
         "status": status,
+        "phase": RunPhase.EXPLORATORY_PILOT,
         "experiment_config_reference": "configs/experiments/example.schema.toml",
         "experiment_config_hash": "sha256:placeholder",
         "git_commit": "placeholder-commit",
@@ -45,6 +47,23 @@ def test_status_transitions_are_explicit() -> None:
     assert transition_status("completed", "invalidated") == RunStatus.INVALIDATED
     with pytest.raises(ValueError, match="illegal"):
         transition_status("failed", "completed")
+
+
+def test_run_phase_is_separate_from_lifecycle_status() -> None:
+    assert {phase.value for phase in RunPhase} == {
+        "engineering",
+        "technical_pilot",
+        "exploratory_pilot",
+        "confirmatory",
+    }
+    assert {status.value for status in RunStatus} == {
+        "planned",
+        "running",
+        "completed",
+        "failed",
+        "invalidated",
+    }
+    assert manifest().to_dict()["phase"] == "exploratory_pilot"
 
 
 def test_failure_and_invalidation_records_serialize() -> None:

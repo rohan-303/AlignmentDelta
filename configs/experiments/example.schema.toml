@@ -1,7 +1,7 @@
 # This is a sanitized, non-executable schema example. It names no real model,
 # benchmark, prompt, or scientific condition.
 schema_version = "0.1"
-phase = "pilot"
+phase = "exploratory_pilot"
 
 [study]
 name = "<EXPERIMENT_NAME>"

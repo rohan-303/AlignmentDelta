@@ -155,8 +155,8 @@ def load_experiment_config(path: Path) -> ExperimentConfig:
     if unknown_root:
         raise ValueError(f"unknown root fields: {', '.join(sorted(unknown_root))}")
     phase = _text(raw["phase"], "phase")
-    if phase not in {"pilot", "confirmatory"}:
-        raise ValueError("phase must be pilot or confirmatory")
+    if phase not in {"engineering", "technical_pilot", "exploratory_pilot", "confirmatory"}:
+        raise ValueError("phase must be engineering, technical_pilot, exploratory_pilot, or confirmatory")
     study = _section(raw, "study", {"name", "description", "protocol_version"})
     source = _section(
         raw,

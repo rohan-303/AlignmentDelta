@@ -1,6 +1,6 @@
 # AlignmentDelta experiment contract
 
-**Protocol status: `0.1-draft`.** This contract defines metadata and identity before any model, benchmark, inference, or alignment intervention is introduced. It is not a completed scientific protocol.
+**Protocol status: `0.2-draft`.** This contract defines metadata and identity before any model, benchmark, inference, or alignment intervention is introduced. It is not a completed scientific protocol.
 
 ## Experimental unit
 
@@ -60,11 +60,13 @@ scientific configuration
 
 A paper claim must be traceable back through this chain to the exact configuration and execution.
 
-## Phase and protocol version
+## Phase, status, and protocol version
 
-The configuration phase is either `pilot` or `confirmatory`.
+Phase and lifecycle status are independent fields. The allowed phases are `engineering`, `technical_pilot`, `exploratory_pilot`, and `confirmatory`. The allowed lifecycle statuses are `planned`, `running`, `completed`, `failed`, and `invalidated`.
 
-- **Pilot:** debugging, runtime estimation, adapter validation, and technical exploration. Pilot data cannot silently become confirmatory data.
+- **Engineering:** implementation and infrastructure validation.
+- **Technical pilot:** runtime, adapter, and intervention-mechanics validation; it is not scientific outcome evidence.
+- **Exploratory pilot:** small scientific measurement-plumbing and variance-estimation work; it is not confirmatory evidence.
 - **Confirmatory:** executed under a frozen protocol and configuration. Changes after inspecting confirmatory results require explicit versioning and documentation.
 
-`0.1-draft` is intentionally provisional. Changing evaluation criteria, transformation definitions, benchmark preprocessing, or outcome definitions may require a protocol-version change. Nothing in Step 1.2 is confirmatory.
+`0.2-draft` separates protocol phase from run lifecycle status. Historical `0.1` manifests remain preserved as written; new manifests must use the separated fields. Changing evaluation criteria, transformation definitions, benchmark preprocessing, or outcome definitions may require a protocol-version change. Nothing in Step 1.2 is confirmatory.

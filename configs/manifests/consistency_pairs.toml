@@ -1,6 +1,9 @@
-schema_version = "2.4.0"
+schema_version = "3.3.0"
 status = "blocked_source_items_unavailable"
 construct = "behavioral consistency under meaning-preserving perturbations"
+source_manifest = "configs/manifests/mmlu.toml"
 seed = 20260830
-transformations = ["mmlu_option_order_permutation", "prompt_wrapper_variation"]
+transformation = "multiple_choice_option_order_permutation"
+permutation_rule = "deterministic seeded bijection over option indices; correct answer remapped by inverse position"
+question_text_policy = "unchanged"
 pairs = []

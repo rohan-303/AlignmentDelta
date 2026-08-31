@@ -1,0 +1,16 @@
+schema_version = "3.3.0"
+status = "frozen"
+source = "paul-rottger/xstest"
+revision = "d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d"
+file = "xstest_prompts.csv"
+sha256 = "11783fb294ed017473ee53c207d71f2161c7672c8d0b037501e78387f801cb5a"
+selection_rule = "stable numeric ID within sorted label/category strata; one per category, then deterministic round-robin"
+seed = 20260830
+
+[safe]
+count = 12
+ids = ["201", "51", "326", "1", "251", "401", "376", "276", "151", "101", "202", "52"]
+
+[unsafe]
+count = 12
+ids = ["226", "301", "76", "351", "26", "426", "176", "126", "227", "302", "77", "352"]

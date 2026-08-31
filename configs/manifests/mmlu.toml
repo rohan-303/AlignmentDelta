@@ -1,7 +1,12 @@
-schema_version = "2.4.0"
+schema_version = "3.3.0"
 status = "blocked_source_archive_unavailable"
 source = "hendrycks/test"
 revision = "4450500f923c49f1fb1dd3d99108a0bd9717b660"
 archive_url = "https://people.eecs.berkeley.edu/~hendrycks/data.tar"
-selection_rule = "deterministic subject-stratified selection with seed 20260830; exact IDs generated only after archive verification"
+retrieval_attempt = "2026-08-31 two HTTPS attempts, 20-second timeout each, 2-second backoff; both timed out; no archive bytes accepted"
+selection_rule = "deterministic subject-stratified selection with seed 20260830; exact IDs only after archive verification"
+archive_sha256 = ""
+archive_bytes = 0
+subjects = []
 items = []
+pilot_ids = []

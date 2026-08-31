@@ -10,7 +10,7 @@ from .atomic import atomic_write_json
 from .canonical import experiment_condition_id, experiment_configuration_hash
 from .config import load_experiment_config
 from .ids import new_run_id
-from .run_manifest import RunManifest, RunStatus, utc_now
+from .run_manifest import RunManifest, RunPhase, RunStatus, utc_now
 
 
 def _git_value(root: Path, *args: str, fallback: str) -> str:
@@ -47,6 +47,7 @@ def main(argv: list[str] | None = None) -> int:
         experiment_condition_id=condition_id,
         created_at_utc=utc_now(),
         status=RunStatus.PLANNED,
+        phase=RunPhase(config.phase),
         experiment_config_reference=str(config_path.relative_to(repository_root)),
         experiment_config_hash=experiment_configuration_hash(config),
         git_commit=_git_value(repository_root, "rev-parse", "HEAD", fallback="unknown"),

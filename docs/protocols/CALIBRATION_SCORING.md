@@ -1,5 +1,11 @@
-# Calibration scoring
+# MMLU option-scoring protocol
 
-For choices `c_1...c_k`, score the complete answer sequence (option text, not assumed single-token labels) under the model tokenizer. For option `i`, with tokens `t_1...t_m`, use `score_i = sum_t log p(t | prompt, previous answer tokens)`. Space-prefixed and multi-token forms are preserved exactly as tokenized. Normalize with a stable log-sum-exp: `p_i = exp(score_i - logsumexp(score))`.
+**Status: frozen before outcome execution; executable only after the authoritative MMLU source gate closes.**
 
-Primary metrics are accuracy (`argmax_i p_i == y`), multiclass Brier score `sum_i (p_i - 1[i=y])^2`, and NLL `-log(p_y)`. Invalid, missing, nonfinite, or tokenizer-inconsistent scores invalidate that item/condition and are reported; they are not imputed or retried with a different scoring representation. Generation decoding parameters are irrelevant to this teacher-forced probability score but the model/template/tokenizer revisions are recorded.
+For each option, score the complete option-text token sequence conditionally on the exact frozen question prompt. Option labels are included in the prompt wrapper; the answer continuation is the full option text, not a single-token label. Let `s_i` be the sum of token log-probabilities for option `i`; no length normalization is applied because the frozen primary score is the conditional sequence log-probability of the complete option text. Normalize with stable log-sum-exp: `p_i = exp(s_i - logsumexp(s))`.
+
+The question template is the official MMLU multiple-choice format with the subject description, deterministic dev examples, options labeled A/B/C/D, and an `Answer:` prefix. BOS handling and token boundaries are delegated to the pinned tokenizer's normal encoding; no manual string tokenization or answer-token lookup is permitted. Scores accumulate in float64 after reading model log-probabilities. No EOS token is appended to the answer continuation unless the tokenizer's normal scoring path requires it; that choice is recorded in the run manifest.
+
+Primary metrics: accuracy and multiclass Brier score. Secondary metric: NLL. Descriptive metric: ECE with fixed bins defined before execution. Invalid, missing, nonfinite, or tokenizer-inconsistent scores invalidate the item-condition and are reported without imputation, alternate formatting, or parameter tuning.
+
+No calibration result has been produced because the authoritative MMLU archive remains blocked.

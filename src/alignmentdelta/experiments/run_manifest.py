@@ -8,10 +8,16 @@ from enum import StrEnum
 from typing import Any
 
 
+class RunPhase(StrEnum):
+    ENGINEERING = "engineering"
+    TECHNICAL_PILOT = "technical_pilot"
+    EXPLORATORY_PILOT = "exploratory_pilot"
+    CONFIRMATORY = "confirmatory"
+
+
 class RunStatus(StrEnum):
     PLANNED = "planned"
     RUNNING = "running"
-    PILOT = "pilot"
     COMPLETED = "completed"
     FAILED = "failed"
     INVALIDATED = "invalidated"
@@ -19,8 +25,7 @@ class RunStatus(StrEnum):
 
 _ALLOWED_TRANSITIONS: dict[RunStatus, frozenset[RunStatus]] = {
     RunStatus.PLANNED: frozenset({RunStatus.RUNNING}),
-    RunStatus.RUNNING: frozenset({RunStatus.PILOT, RunStatus.COMPLETED, RunStatus.FAILED}),
-    RunStatus.PILOT: frozenset({RunStatus.INVALIDATED}),
+    RunStatus.RUNNING: frozenset({RunStatus.COMPLETED, RunStatus.FAILED}),
     RunStatus.COMPLETED: frozenset({RunStatus.INVALIDATED}),
     RunStatus.FAILED: frozenset(),
     RunStatus.INVALIDATED: frozenset(),
@@ -75,6 +80,7 @@ class RunManifest:
     experiment_condition_id: str
     created_at_utc: str
     status: RunStatus
+    phase: RunPhase
     experiment_config_reference: str
     experiment_config_hash: str
     git_commit: str
@@ -110,8 +116,8 @@ class RunManifest:
             raise ValueError("failed runs require a failure record")
         if self.status == RunStatus.INVALIDATED and self.invalidation is None:
             raise ValueError("invalidated runs require an invalidation record")
-        if self.status in {RunStatus.COMPLETED, RunStatus.PILOT} and self.completed_at_utc is None:
-            raise ValueError("completed and pilot runs require completed_at_utc")
+        if self.status == RunStatus.COMPLETED and self.completed_at_utc is None:
+            raise ValueError("completed runs require completed_at_utc")
 
     def to_dict(self) -> dict[str, Any]:
         data = asdict(self)
