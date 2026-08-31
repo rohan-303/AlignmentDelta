@@ -94,7 +94,7 @@ class MMLUProvider:
         cache = _cache_dir(cache_root, "mmlu", MMLU_REVISION)
         data = _json_file(cache, str(self.manifest["cache_file"]))
         rows = data if isinstance(data, list) else data.get("items", data.get("records", []))
-        by_id = {str(item.get("id")): item for item in rows}
+        by_id = {str(item.get("stable_id", item.get("id"))): item for item in rows}
         self.items = []
         for stable_id in self.manifest["ids"]:
             item = by_id.get(stable_id)
@@ -105,6 +105,15 @@ class MMLUProvider:
             if not item.get("subject") or item.get("split") != "dev" or not isinstance(options, list) or len(options) != 4 or answer not in range(4):
                 raise RuntimeError("HYDRATED_MMLU_ITEM_INVALID")
             question = str(item.get("question", ""))
+            content_hash = str(item.get("content_hash", ""))
+            if len(content_hash) != 64 or _hash_text(
+                json.dumps(
+                    {"question": question, "options": options, "answer": answer},
+                    ensure_ascii=False,
+                    separators=(",", ":"),
+                )
+            ) != content_hash:
+                raise RuntimeError("HYDRATED_MMLU_CONTENT_HASH_MISMATCH")
             self.items.append({"id": stable_id, "subject": item["subject"], "split": "dev", "source_index": item.get("source_index"), "question": question, "options": options, "gold_answer": answer, "content_hash": item.get("content_hash", _hash_text(question + json.dumps(options, sort_keys=True))), "source_revision": MMLU_REVISION})
 
     def __call__(self, row: dict[str, Any]) -> dict[str, Any]:

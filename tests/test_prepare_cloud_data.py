@@ -1,0 +1,75 @@
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+from types import SimpleNamespace
+
+import pytest
+
+from alignmentdelta.experiments import prepare_cloud_data as hydration
+from alignmentdelta.experiments.prepare_cloud_data import SourceSpec
+
+
+def test_source_registry_has_explicit_backends() -> None:
+    assert [(s.name, s.backend) for s in hydration.SOURCES] == [
+        ("refusal_direction", "github"),
+        ("xstest", "github"),
+        ("mmlu", "huggingface_dataset"),
+    ]
+
+
+def test_github_sources_do_not_use_huggingface(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    calls: list[str] = []
+
+    def fake_hydrate(spec: SourceSpec, destination: Path) -> None:
+        calls.append(f"github:{spec.name}")
+
+    def fake_dataset(spec: SourceSpec, destination: Path) -> None:
+        calls.append(f"dataset:{spec.name}")
+
+    monkeypatch.setattr(hydration, "_hydrate_github", fake_hydrate)
+    monkeypatch.setattr(hydration, "_hydrate_dataset", fake_dataset)
+    monkeypatch.setattr(hydration, "_validate_refusal", lambda destination: {})
+    monkeypatch.setattr(hydration, "_validate_xstest", lambda destination, repo_root: {})
+    monkeypatch.setattr(hydration, "_materialize_mmlu", lambda destination, repo_root: {})
+    monkeypatch.setattr(
+        hydration,
+        "_write_metadata",
+        lambda destination, spec: destination.mkdir(parents=True, exist_ok=True),
+    )
+    hydration.hydrate(tmp_path, repo_root=Path.cwd())
+    assert calls == ["github:refusal_direction", "github:xstest", "dataset:mmlu"]
+
+
+def test_mmlu_backend_uses_dataset_semantics(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    calls: list[dict[str, object]] = []
+
+    def fake_snapshot_download(**kwargs: object) -> None:
+        calls.append(kwargs)
+        (Path(str(kwargs["local_dir"])) / "dataset.parquet").parent.mkdir(parents=True)
+        (Path(str(kwargs["local_dir"])) / "dataset.parquet").write_bytes(b"fixture")
+
+    monkeypatch.setitem(sys.modules, "huggingface_hub", SimpleNamespace(snapshot_download=fake_snapshot_download))
+    spec = next(spec for spec in hydration.SOURCES if spec.name == "mmlu")
+    hydration._hydrate_dataset(spec, tmp_path / "mmlu")
+    assert calls == [
+        {
+            "repo_id": "cais/mmlu",
+            "repo_type": "dataset",
+            "revision": hydration.MMLU_REVISION,
+            "local_dir": calls[0]["local_dir"],
+        }
+    ]
+
+
+def test_verify_mode_never_hydrates_or_downloads(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    for spec in hydration.SOURCES:
+        destination = tmp_path / spec.name / spec.revision
+        destination.mkdir(parents=True)
+        hydration._write_metadata(destination, spec)
+    monkeypatch.setattr(hydration, "_hydrate_github", lambda spec, destination: pytest.fail("network hydration"))
+    monkeypatch.setattr(hydration, "_hydrate_dataset", lambda spec, destination: pytest.fail("network hydration"))
+    monkeypatch.setattr(hydration, "_validate_refusal", lambda destination: {})
+    monkeypatch.setattr(hydration, "_validate_xstest", lambda destination, repo_root: {})
+    monkeypatch.setattr(hydration, "_verify_mmlu_materialized", lambda destination, repo_root: {})
+    hydration.hydrate(tmp_path, repo_root=Path.cwd(), verify_only=True)

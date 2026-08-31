@@ -148,6 +148,8 @@ def reconstruct_direction(model: Any, tokenizer: Any, source_root: Path) -> Any:
     import torch
 
     from alignmentdelta.engineering.capture import OnlineMeanDifference, ResidualCapture
+    from alignmentdelta.engineering.direction import render_messages, stable_id
+    from alignmentdelta.engineering.technical_pilot_core import deterministic_sample
 
     candidates: dict[str, Path | None] = {"harmful": None, "harmless": None}
     for path in source_root.rglob("*.json"):
@@ -159,20 +161,20 @@ def reconstruct_direction(model: Any, tokenizer: Any, source_root: Path) -> Any:
     records: dict[str, list[dict[str, Any]]] = {
         role: json.loads(path.read_text(encoding="utf-8")) for role, path in paths.items()
     }
+    sample = deterministic_sample(
+        records["harmful"], records["harmless"], train_counts=(208, 208), validation_counts=(12, 12)
+    )
     selected = {
-        role: sorted(
-            rows,
-            key=lambda row: str(row.get("id", hashlib.sha256(json.dumps(row, sort_keys=True).encode()).hexdigest())),
-        )[:208]
-        for role, rows in records.items()
+        "harmful": sample["direction_train_harmful"],
+        "harmless": sample["direction_train_harmless"],
     }
     accumulator = OnlineMeanDifference(EXPECTED_HIDDEN_SIZE)
     adapter = QwenScientificAdapter(model, layer=LAYER)
     for role, harmful in (("harmful", True), ("harmless", False)):
         for record in selected[role]:
-            rendered = tokenizer.apply_chat_template(
-                [{"role": "user", "content": str(record["instruction"])}], tokenize=False, add_generation_prompt=True
-            )
+            if stable_id(record) not in {stable_id(item) for item in selected[role]}:
+                raise RuntimeError("DIRECTION_SAMPLE_PARITY_MISMATCH")
+            rendered = render_messages(tokenizer, record)
             encoded = tokenizer(rendered, return_tensors="pt").to(model.device)
             capture = ResidualCapture(adapter.block)
             capture.install()
