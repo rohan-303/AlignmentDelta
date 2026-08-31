@@ -1,9 +1,9 @@
 # MMLU source decision
 
-**Decision: `MMLU_SOURCE_BLOCKED`.**
+**Decision: `MMLU_PROVENANCE_VERIFIED_MIRROR`.**
 
-The pinned source is `hendrycks/test` at revision `4450500f923c49f1fb1dd3d99108a0bd9717b660`; its README points to `https://people.eecs.berkeley.edu/~hendrycks/data.tar`. HTTPS retrieval attempts on 2026-08-31 used two 20-second attempts with a two-second backoff and both timed out without receiving archive bytes. The pinned repository contains evaluation code but not the archive contents.
+The original pinned source remains `hendrycks/test` at revision `4450500f923c49f1fb1dd3d99108a0bd9717b660`; its README points to `https://people.eecs.berkeley.edu/~hendrycks/data.tar`. Three bounded HTTPS retrieval attempts on 2026-08-31 timed out before headers and received zero bytes.
 
-No random mirror was accepted. A future retry may use a network environment that reaches the exact official URL. A mirror may be adopted only after proving provenance and byte/content identity strongly enough for paper use. No MMLU-Pro, CMMLU, or derivative dataset may substitute without a separately approved protocol amendment.
+The accepted fallback is `cais/mmlu` at immutable revision `c30699e8356da336a370243923dbaf21066bb9fe`. Its card identifies MMLU, cites the original Hendrycks et al. benchmark, exposes the standard 57-subject question/choices/answer schema, and declares the original source dataset. Its full history shows the original loader/source archive lineage followed by a Parquet conversion. It is a provenance-equivalent mirror, not the original archive and not claimed byte-identical.
 
-Because exact MMLU items, labels, archive hash, split counts, and overlap audit are unavailable, the MMLU manifest and consistency-pair manifest remain blocked.
+The materialized subject files contain actual validated split counts and hashes in `configs/manifests/mmlu_source_files.json`; raw question text remains in the external cache. The exploratory calibration and consistency manifests are now complete and disjoint. The separate mirror audit records the remaining byte-identity limitation.

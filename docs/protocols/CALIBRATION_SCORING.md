@@ -8,4 +8,4 @@ The question template is the official MMLU multiple-choice format with the subje
 
 Primary metrics: accuracy and multiclass Brier score. Secondary metric: NLL. Descriptive metric: ECE with fixed bins defined before execution. Invalid, missing, nonfinite, or tokenizer-inconsistent scores invalidate the item-condition and are reported without imputation, alternate formatting, or parameter tuning.
 
-No calibration result has been produced because the authoritative MMLU archive remains blocked.
+No calibration result has been produced because the authoritative MMLU archive was unavailable. Step 3.4 accepts `cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe` only as a provenance-verified mirror; see `MMLU_MIRROR_PROVENANCE_AUDIT.md`. The exact Brier definition is `sum_i (p_i-y_i)^2`, unnormalized multiclass, and the materialized source is validated before execution.

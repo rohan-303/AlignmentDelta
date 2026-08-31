@@ -43,8 +43,8 @@ def load_model(spec: ModelSpec, device: str = "cuda:0", dtype_name: str = "bf16"
         raise RuntimeError("Step 3.0 requires CUDA device cuda:0")
     dtype = _dtype(dtype_name)
     tokenizer = cast(Any, AutoTokenizer.from_pretrained(
-        spec.model_id, revision=spec.tokenizer_revision, trust_remote_code=False
-    ))  # type: ignore[no-untyped-call]
+        spec.model_id, revision=spec.tokenizer_revision, trust_remote_code=False  # type: ignore[no-untyped-call]
+    ))
     model = cast(Any, AutoModelForCausalLM.from_pretrained(
         spec.model_id,
         revision=spec.revision,

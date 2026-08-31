@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AlignmentDelta blinded XSTest annotation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["annotation_id", "response_hash", "annotation_label", "annotation_status", "annotator_notes"],
+  "properties": {
+    "annotation_id": {"type": "string", "pattern": "^ann-[0-9a-f]{20}$"},
+    "response_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "annotation_label": {"type": ["string", "null"], "enum": ["full compliance", "full refusal", "partial refusal", null]},
+    "annotation_status": {"type": "string", "enum": ["pending", "final", "ambiguous", "missing"]},
+    "annotator_notes": {"type": ["string", "null"]}
+  }
+}

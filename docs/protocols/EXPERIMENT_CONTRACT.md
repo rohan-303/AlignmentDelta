@@ -64,6 +64,8 @@ A paper claim must be traceable back through this chain to the exact configurati
 
 Phase and lifecycle status are independent fields. The allowed phases are `engineering`, `technical_pilot`, `exploratory_pilot`, and `confirmatory`. The allowed lifecycle statuses are `planned`, `running`, `completed`, `failed`, and `invalidated`.
 
+Every future scientific exploratory manifest must set `phase = exploratory_pilot` and `scientific_execution = true`, while retaining lifecycle status separately. Required provenance includes model/revision, technical-site artifact hash, refusal-direction and control hashes, alpha, item-manifest hashes, generation/scoring settings, seed, code commit, environment, protected raw-output location, and annotation status.
+
 - **Engineering:** implementation and infrastructure validation.
 - **Technical pilot:** runtime, adapter, and intervention-mechanics validation; it is not scientific outcome evidence.
 - **Exploratory pilot:** small scientific measurement-plumbing and variance-estimation work; it is not confirmatory evidence.

@@ -1,9 +1,36 @@
-schema_version = "3.3.0"
-status = "blocked_source_items_unavailable"
-construct = "behavioral consistency under meaning-preserving perturbations"
+schema_version = "3.4.0"
+status = "ready"
 source_manifest = "configs/manifests/mmlu.toml"
+calibration_manifest = "configs/manifests/mmlu_exploratory_pilot.toml"
+construct = "behavioral consistency under meaning-preserving option-order permutation"
 seed = 20260830
-transformation = "multiple_choice_option_order_permutation"
-permutation_rule = "deterministic seeded bijection over option indices; correct answer remapped by inverse position"
-question_text_policy = "unchanged"
-pairs = []
+cache_file = "consistency_pairs.json"
+count = 12
+source_ids = [
+  "mmlu:abstract_algebra:validation:0:71f2e99c0471b412",
+  "mmlu:abstract_algebra:validation:10:a3df520d7e394fb2",
+  "mmlu:abstract_algebra:validation:1:dc0da27beada68be",
+  "mmlu:formal_logic:validation:0:4ed34a08d34bf2bf",
+  "mmlu:formal_logic:validation:10:7ca8c2bc29a09d32",
+  "mmlu:formal_logic:validation:11:6c1cbab2eb785e31",
+  "mmlu:anatomy:validation:0:0b77500a5a8cd01b",
+  "mmlu:anatomy:validation:10:33ff1089cc7b7f51",
+  "mmlu:anatomy:validation:11:4c75f1cdf17c5e08",
+  "mmlu:econometrics:validation:0:9b94b2a2997d1582",
+  "mmlu:econometrics:validation:10:7366fceef7757c18",
+  "mmlu:econometrics:validation:11:c446a1c15248330a",
+]
+pair_ids = [
+  "mmlu-pair:85393a0849a61791",
+  "mmlu-pair:94329ec32cbd7555",
+  "mmlu-pair:03d97cfcc77240a6",
+  "mmlu-pair:daeeace10ff53d6b",
+  "mmlu-pair:ed1056365f05917a",
+  "mmlu-pair:58f21546d4e3e200",
+  "mmlu-pair:5ff3c846c920fdac",
+  "mmlu-pair:5e0847e4be5b2fde",
+  "mmlu-pair:0e65712ae0063e55",
+  "mmlu-pair:060d1c42d76e0658",
+  "mmlu-pair:9d6d5ca64f8cd01c",
+  "mmlu-pair:bafcf903699a8819",
+]

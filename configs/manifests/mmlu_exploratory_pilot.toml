@@ -1,0 +1,20 @@
+schema_version = "3.4.0"
+status = "frozen"
+source_manifest = "configs/manifests/mmlu.toml"
+selection = "first three stable IDs per broad category from dev split, categories sorted"
+count = 12
+cache_file = "calibration_items.json"
+ids = [
+  "mmlu:abstract_algebra:dev:0:e5d64f8249fbd678",
+  "mmlu:abstract_algebra:dev:1:20a04a2ffd2f59c2",
+  "mmlu:abstract_algebra:dev:2:9db42f22bbd6d71c",
+  "mmlu:formal_logic:dev:0:600ed9c5748ebced",
+  "mmlu:formal_logic:dev:1:e567f3ff17cd0b4e",
+  "mmlu:formal_logic:dev:2:48511ee74b33641f",
+  "mmlu:anatomy:dev:0:785a05f426c42210",
+  "mmlu:anatomy:dev:1:40cf246adcf5c215",
+  "mmlu:anatomy:dev:2:ff2837a1937a12ac",
+  "mmlu:econometrics:dev:0:851af1e2cc699e8d",
+  "mmlu:econometrics:dev:1:b79e8ce3a2abab1e",
+  "mmlu:econometrics:dev:2:46cae8db85f5694e",
+]

@@ -7,12 +7,18 @@ import sys
 
 import pytest
 
+from alignmentdelta.experiments.annotation import (
+    annotation_export,
+    blind_response,
+    unblind_labels,
+)
 from alignmentdelta.experiments.exploratory_pilot import (
     ALPHAS,
     RANDOM_CONTROL_SEEDS,
     brier_score,
     expand_conditions,
     nll,
+    operation_counts,
     permute_options,
     remap_answer,
     stable_probabilities,
@@ -69,3 +75,45 @@ def test_dry_run_module_does_not_import_model_frameworks() -> None:
         env={**os.environ, "PYTHONPATH": "src"},
     )
     assert result.stdout.strip() == "False"
+
+
+def test_operation_counts_distinguish_generation_and_option_scoring() -> None:
+    counts = operation_counts(24, 12, 12)
+    assert counts == {
+        "representations": 60,
+        "logical_condition_states": 1860,
+        "unique_baseline_states": 60,
+        "xstest_generations": 744,
+        "mmlu_option_scoring_operations": 1488,
+        "consistency_original_scoring_operations": 372,
+        "consistency_transformed_scoring_operations": 372,
+        "total_forward_operation_estimate": 2976,
+    }
+
+
+def test_materialized_mmlu_subsets_are_frozen_and_disjoint() -> None:
+    import json
+    from pathlib import Path
+
+    cache = (
+        Path.home() / ".cache" / "alignmentdelta" / "source_data" / "mmlu" / "c30699e8356da336a370243923dbaf21066bb9fe"
+    )
+    calibration = json.loads((cache / "calibration_items.json").read_text(encoding="utf-8"))
+    pairs = json.loads((cache / "consistency_pairs.json").read_text(encoding="utf-8"))
+    assert len(calibration) == 12
+    assert len(pairs) == 12
+    assert not {item["stable_id"] for item in calibration} & {pair["source_id"] for pair in pairs}
+    assert {item["broad_category"] for item in calibration} == {"STEM", "humanities", "social_sciences", "other"}
+    assert all(len(pair["source_options"]) == len(pair["variant_options"]) == 4 for pair in pairs)
+
+
+def test_blinding_export_hides_condition_metadata_and_unblinds_deterministically() -> None:
+    response, mapping = blind_response("alpha-1.25-refusal", "xstest:1", "safe response")
+    exported = annotation_export(response)
+    assert not {"condition_id", "alpha", "intervention_type", "control_seed"} & set(exported)
+    exported["annotation_label"] = "full refusal"
+    exported["annotation_status"] = "final"
+    first = unblind_labels([exported], [mapping])
+    second = unblind_labels([exported], [mapping])
+    assert first == second
+    assert first[0]["condition_id"] == "alpha-1.25-refusal"
