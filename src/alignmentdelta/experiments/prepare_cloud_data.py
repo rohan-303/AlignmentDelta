@@ -18,6 +18,8 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 
+from alignmentdelta.experiments.source_layout import REFUSAL_SPLIT_COUNTS, REFUSAL_SPLIT_SHA256, refusal_split_paths
+
 REFUSAL_REVISION = "9d852fae1a9121c78b29142de733cb1340770cc3"
 XSTEST_REVISION = "d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d"
 MMLU_REVISION = "c30699e8356da336a370243923dbaf21066bb9fe"
@@ -217,23 +219,18 @@ def _load_manifest(root: Path, relative: str) -> dict[str, Any]:
 
 
 def _validate_refusal(destination: Path) -> dict[str, Any]:
-    expected = {
-        "harmful_train.json": 260,
-        "harmful_val.json": 39,
-        "harmful_test.json": 572,
-        "harmless_train.json": 18793,
-        "harmless_val.json": 6264,
-        "harmless_test.json": 6266,
-    }
+    expected = REFUSAL_SPLIT_COUNTS
     files: dict[str, Any] = {}
     for name, count in expected.items():
-        path = destination / name
+        path = refusal_split_paths(destination)[name]
         if not path.exists():
             raise RuntimeError("HYDRATED_REFUSAL_SOURCE_MISSING")
         rows = json.loads(path.read_text(encoding="utf-8"))
         if not isinstance(rows, list) or len(rows) != count:
             raise RuntimeError("HYDRATED_REFUSAL_SOURCE_COUNT_MISMATCH")
-        files[name] = _digest(path)
+        if _digest(path)["sha256"] != REFUSAL_SPLIT_SHA256[name]:
+            raise RuntimeError("HYDRATED_REFUSAL_SOURCE_HASH_MISMATCH")
+        files[str(path.relative_to(destination))] = _digest(path)
     return {"files": files, "counts": expected}
 
 

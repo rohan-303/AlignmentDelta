@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+import json
 import sys
 from pathlib import Path
 from types import SimpleNamespace
@@ -73,3 +75,18 @@ def test_verify_mode_never_hydrates_or_downloads(monkeypatch: pytest.MonkeyPatch
     monkeypatch.setattr(hydration, "_validate_xstest", lambda destination, repo_root: {})
     monkeypatch.setattr(hydration, "_verify_mmlu_materialized", lambda destination, repo_root: {})
     hydration.hydrate(tmp_path, repo_root=Path.cwd(), verify_only=True)
+
+
+def test_refusal_validator_requires_nested_pinned_layout(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    split_paths = hydration.refusal_split_paths(tmp_path)
+    counts = {name: 2 for name in split_paths}
+    hashes: dict[str, str] = {}
+    for name, path in split_paths.items():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps([{"id": 1}, {"id": 2}]), encoding="utf-8")
+        hashes[name] = hashlib.sha256(path.read_bytes()).hexdigest()
+    monkeypatch.setattr(hydration, "REFUSAL_SPLIT_SHA256", hashes)
+    monkeypatch.setattr(hydration, "REFUSAL_SPLIT_COUNTS", counts)
+    result = hydration._validate_refusal(tmp_path)
+    assert result["counts"] == counts
+    assert all(relative.replace("\\", "/").startswith("dataset/splits/") for relative in result["files"])

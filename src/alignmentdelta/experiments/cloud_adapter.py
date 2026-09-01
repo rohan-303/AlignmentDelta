@@ -150,14 +150,15 @@ def reconstruct_direction(model: Any, tokenizer: Any, source_root: Path) -> Any:
     from alignmentdelta.engineering.capture import OnlineMeanDifference, ResidualCapture
     from alignmentdelta.engineering.direction import render_messages, stable_id
     from alignmentdelta.engineering.technical_pilot_core import deterministic_sample
+    from alignmentdelta.experiments.source_layout import refusal_split_paths
 
-    candidates: dict[str, Path | None] = {"harmful": None, "harmless": None}
-    for path in source_root.rglob("*.json"):
-        if path.name in {"harmful_train.json", "harmless_train.json"}:
-            candidates["harmful" if path.name.startswith("harmful") else "harmless"] = path
-    if any(path is None for path in candidates.values()):
+    split_paths = refusal_split_paths(source_root)
+    paths = {
+        "harmful": split_paths["harmful_train"],
+        "harmless": split_paths["harmless_train"],
+    }
+    if any(not path.exists() for path in paths.values()):
         raise RuntimeError("DIRECTION_SOURCE_MISSING")
-    paths = {role: path for role, path in candidates.items() if path is not None}
     records: dict[str, list[dict[str, Any]]] = {
         role: json.loads(path.read_text(encoding="utf-8")) for role, path in paths.items()
     }
