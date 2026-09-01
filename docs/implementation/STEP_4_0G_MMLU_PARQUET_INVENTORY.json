@@ -1,0 +1,2470 @@
+{
+  "canonical_file_count": 171,
+  "dataset": "cais/mmlu",
+  "entries": [
+    {
+      "bytes": 3452,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "abstract_algebra/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "abstract_algebra"
+    },
+    {
+      "bytes": 9964,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "abstract_algebra/test-00000-of-00001.parquet",
+      "rows": 100,
+      "split": "test",
+      "subject": "abstract_algebra"
+    },
+    {
+      "bytes": 3727,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "abstract_algebra/validation-00000-of-00001.parquet",
+      "rows": 11,
+      "split": "validation",
+      "subject": "abstract_algebra"
+    },
+    {
+      "bytes": 47513731,
+      "columns": [
+        "answer",
+        "choices",
+        "question",
+        "subject"
+      ],
+      "exclusion_reason": "aggregate_configuration_excluded",
+      "relative_path": "all/auxiliary_train-00000-of-00001.parquet",
+      "rows": 99842,
+      "split": "auxiliary_train",
+      "subject": "auxiliary_train-00000-of-00001.parquet"
+    },
+    {
+      "bytes": 76504,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": "aggregate_configuration_excluded",
+      "relative_path": "all/dev-00000-of-00001.parquet",
+      "rows": 285,
+      "split": "dev",
+      "subject": "dev-00000-of-00001.parquet"
+    },
+    {
+      "bytes": 3504718,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": "aggregate_configuration_excluded",
+      "relative_path": "all/test-00000-of-00001.parquet",
+      "rows": 14042,
+      "split": "test",
+      "subject": "test-00000-of-00001.parquet"
+    },
+    {
+      "bytes": 408449,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": "aggregate_configuration_excluded",
+      "relative_path": "all/validation-00000-of-00001.parquet",
+      "rows": 1531,
+      "split": "validation",
+      "subject": "validation-00000-of-00001.parquet"
+    },
+    {
+      "bytes": 3503,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "anatomy/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "anatomy"
+    },
+    {
+      "bytes": 20078,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "anatomy/test-00000-of-00001.parquet",
+      "rows": 135,
+      "split": "test",
+      "subject": "anatomy"
+    },
+    {
+      "bytes": 5283,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "anatomy/validation-00000-of-00001.parquet",
+      "rows": 14,
+      "split": "validation",
+      "subject": "anatomy"
+    },
+    {
+      "bytes": 4942,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "astronomy/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "astronomy"
+    },
+    {
+      "bytes": 28323,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "astronomy/test-00000-of-00001.parquet",
+      "rows": 152,
+      "split": "test",
+      "subject": "astronomy"
+    },
+    {
+      "bytes": 6051,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "astronomy/validation-00000-of-00001.parquet",
+      "rows": 16,
+      "split": "validation",
+      "subject": "astronomy"
+    },
+    {
+      "bytes": 47518592,
+      "columns": [
+        "train"
+      ],
+      "exclusion_reason": "auxiliary_train_excluded",
+      "relative_path": "auxiliary_train/train-00000-of-00001.parquet",
+      "rows": 99842,
+      "split": "auxiliary_train",
+      "subject": "train-00000-of-00001.parquet"
+    },
+    {
+      "bytes": 4959,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "business_ethics/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "business_ethics"
+    },
+    {
+      "bytes": 21566,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "business_ethics/test-00000-of-00001.parquet",
+      "rows": 100,
+      "split": "test",
+      "subject": "business_ethics"
+    },
+    {
+      "bytes": 5094,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "business_ethics/validation-00000-of-00001.parquet",
+      "rows": 11,
+      "split": "validation",
+      "subject": "business_ethics"
+    },
+    {
+      "bytes": 3669,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "clinical_knowledge/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "clinical_knowledge"
+    },
+    {
+      "bytes": 40510,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "clinical_knowledge/test-00000-of-00001.parquet",
+      "rows": 265,
+      "split": "test",
+      "subject": "clinical_knowledge"
+    },
+    {
+      "bytes": 7476,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "clinical_knowledge/validation-00000-of-00001.parquet",
+      "rows": 29,
+      "split": "validation",
+      "subject": "clinical_knowledge"
+    },
+    {
+      "bytes": 4273,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_biology/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "college_biology"
+    },
+    {
+      "bytes": 31845,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_biology/test-00000-of-00001.parquet",
+      "rows": 144,
+      "split": "test",
+      "subject": "college_biology"
+    },
+    {
+      "bytes": 6899,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_biology/validation-00000-of-00001.parquet",
+      "rows": 16,
+      "split": "validation",
+      "subject": "college_biology"
+    },
+    {
+      "bytes": 4037,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_chemistry/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "college_chemistry"
+    },
+    {
+      "bytes": 17877,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_chemistry/test-00000-of-00001.parquet",
+      "rows": 100,
+      "split": "test",
+      "subject": "college_chemistry"
+    },
+    {
+      "bytes": 4867,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_chemistry/validation-00000-of-00001.parquet",
+      "rows": 8,
+      "split": "validation",
+      "subject": "college_chemistry"
+    },
+    {
+      "bytes": 6812,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_computer_science/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "college_computer_science"
+    },
+    {
+      "bytes": 28069,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_computer_science/test-00000-of-00001.parquet",
+      "rows": 100,
+      "split": "test",
+      "subject": "college_computer_science"
+    },
+    {
+      "bytes": 6251,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_computer_science/validation-00000-of-00001.parquet",
+      "rows": 11,
+      "split": "validation",
+      "subject": "college_computer_science"
+    },
+    {
+      "bytes": 5159,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_mathematics/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "college_mathematics"
+    },
+    {
+      "bytes": 16620,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_mathematics/test-00000-of-00001.parquet",
+      "rows": 100,
+      "split": "test",
+      "subject": "college_mathematics"
+    },
+    {
+      "bytes": 5000,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_mathematics/validation-00000-of-00001.parquet",
+      "rows": 11,
+      "split": "validation",
+      "subject": "college_mathematics"
+    },
+    {
+      "bytes": 4838,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_medicine/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "college_medicine"
+    },
+    {
+      "bytes": 42470,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_medicine/test-00000-of-00001.parquet",
+      "rows": 173,
+      "split": "test",
+      "subject": "college_medicine"
+    },
+    {
+      "bytes": 8995,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_medicine/validation-00000-of-00001.parquet",
+      "rows": 22,
+      "split": "validation",
+      "subject": "college_medicine"
+    },
+    {
+      "bytes": 4510,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_physics/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "college_physics"
+    },
+    {
+      "bytes": 18641,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_physics/test-00000-of-00001.parquet",
+      "rows": 102,
+      "split": "test",
+      "subject": "college_physics"
+    },
+    {
+      "bytes": 6388,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "college_physics/validation-00000-of-00001.parquet",
+      "rows": 11,
+      "split": "validation",
+      "subject": "college_physics"
+    },
+    {
+      "bytes": 4326,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "computer_security/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "computer_security"
+    },
+    {
+      "bytes": 19150,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "computer_security/test-00000-of-00001.parquet",
+      "rows": 100,
+      "split": "test",
+      "subject": "computer_security"
+    },
+    {
+      "bytes": 6674,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "computer_security/validation-00000-of-00001.parquet",
+      "rows": 11,
+      "split": "validation",
+      "subject": "computer_security"
+    },
+    {
+      "bytes": 3959,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "conceptual_physics/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "conceptual_physics"
+    },
+    {
+      "bytes": 25031,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "conceptual_physics/test-00000-of-00001.parquet",
+      "rows": 235,
+      "split": "test",
+      "subject": "conceptual_physics"
+    },
+    {
+      "bytes": 5978,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "conceptual_physics/validation-00000-of-00001.parquet",
+      "rows": 26,
+      "split": "validation",
+      "subject": "conceptual_physics"
+    },
+    {
+      "bytes": 4541,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "econometrics/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "econometrics"
+    },
+    {
+      "bytes": 24480,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "econometrics/test-00000-of-00001.parquet",
+      "rows": 114,
+      "split": "test",
+      "subject": "econometrics"
+    },
+    {
+      "bytes": 7019,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "econometrics/validation-00000-of-00001.parquet",
+      "rows": 12,
+      "split": "validation",
+      "subject": "econometrics"
+    },
+    {
+      "bytes": 4079,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "electrical_engineering/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "electrical_engineering"
+    },
+    {
+      "bytes": 17589,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "electrical_engineering/test-00000-of-00001.parquet",
+      "rows": 145,
+      "split": "test",
+      "subject": "electrical_engineering"
+    },
+    {
+      "bytes": 5078,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "electrical_engineering/validation-00000-of-00001.parquet",
+      "rows": 16,
+      "split": "validation",
+      "subject": "electrical_engineering"
+    },
+    {
+      "bytes": 4547,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "elementary_mathematics/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "elementary_mathematics"
+    },
+    {
+      "bytes": 41056,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "elementary_mathematics/test-00000-of-00001.parquet",
+      "rows": 378,
+      "split": "test",
+      "subject": "elementary_mathematics"
+    },
+    {
+      "bytes": 9384,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "elementary_mathematics/validation-00000-of-00001.parquet",
+      "rows": 41,
+      "split": "validation",
+      "subject": "elementary_mathematics"
+    },
+    {
+      "bytes": 4807,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "formal_logic/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "formal_logic"
+    },
+    {
+      "bytes": 21515,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "formal_logic/test-00000-of-00001.parquet",
+      "rows": 126,
+      "split": "test",
+      "subject": "formal_logic"
+    },
+    {
+      "bytes": 6562,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "formal_logic/validation-00000-of-00001.parquet",
+      "rows": 14,
+      "split": "validation",
+      "subject": "formal_logic"
+    },
+    {
+      "bytes": 3575,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "global_facts/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "global_facts"
+    },
+    {
+      "bytes": 11489,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "global_facts/test-00000-of-00001.parquet",
+      "rows": 100,
+      "split": "test",
+      "subject": "global_facts"
+    },
+    {
+      "bytes": 4194,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "global_facts/validation-00000-of-00001.parquet",
+      "rows": 10,
+      "split": "validation",
+      "subject": "global_facts"
+    },
+    {
+      "bytes": 4939,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_biology/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "high_school_biology"
+    },
+    {
+      "bytes": 62704,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_biology/test-00000-of-00001.parquet",
+      "rows": 310,
+      "split": "test",
+      "subject": "high_school_biology"
+    },
+    {
+      "bytes": 10573,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_biology/validation-00000-of-00001.parquet",
+      "rows": 32,
+      "split": "validation",
+      "subject": "high_school_biology"
+    },
+    {
+      "bytes": 4156,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_chemistry/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "high_school_chemistry"
+    },
+    {
+      "bytes": 33334,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_chemistry/test-00000-of-00001.parquet",
+      "rows": 203,
+      "split": "test",
+      "subject": "high_school_chemistry"
+    },
+    {
+      "bytes": 8309,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_chemistry/validation-00000-of-00001.parquet",
+      "rows": 22,
+      "split": "validation",
+      "subject": "high_school_chemistry"
+    },
+    {
+      "bytes": 6537,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_computer_science/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "high_school_computer_science"
+    },
+    {
+      "bytes": 27253,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_computer_science/test-00000-of-00001.parquet",
+      "rows": 100,
+      "split": "test",
+      "subject": "high_school_computer_science"
+    },
+    {
+      "bytes": 5282,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_computer_science/validation-00000-of-00001.parquet",
+      "rows": 9,
+      "split": "validation",
+      "subject": "high_school_computer_science"
+    },
+    {
+      "bytes": 22211,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_european_history/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "high_school_european_history"
+    },
+    {
+      "bytes": 142465,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_european_history/test-00000-of-00001.parquet",
+      "rows": 165,
+      "split": "test",
+      "subject": "high_school_european_history"
+    },
+    {
+      "bytes": 31594,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_european_history/validation-00000-of-00001.parquet",
+      "rows": 18,
+      "split": "validation",
+      "subject": "high_school_european_history"
+    },
+    {
+      "bytes": 3929,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_geography/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "high_school_geography"
+    },
+    {
+      "bytes": 28162,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_geography/test-00000-of-00001.parquet",
+      "rows": 198,
+      "split": "test",
+      "subject": "high_school_geography"
+    },
+    {
+      "bytes": 6164,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_geography/validation-00000-of-00001.parquet",
+      "rows": 22,
+      "split": "validation",
+      "subject": "high_school_geography"
+    },
+    {
+      "bytes": 4475,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_government_and_politics/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "high_school_government_and_politics"
+    },
+    {
+      "bytes": 40219,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_government_and_politics/test-00000-of-00001.parquet",
+      "rows": 193,
+      "split": "test",
+      "subject": "high_school_government_and_politics"
+    },
+    {
+      "bytes": 8269,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_government_and_politics/validation-00000-of-00001.parquet",
+      "rows": 21,
+      "split": "validation",
+      "subject": "high_school_government_and_politics"
+    },
+    {
+      "bytes": 4045,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_macroeconomics/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "high_school_macroeconomics"
+    },
+    {
+      "bytes": 54819,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_macroeconomics/test-00000-of-00001.parquet",
+      "rows": 390,
+      "split": "test",
+      "subject": "high_school_macroeconomics"
+    },
+    {
+      "bytes": 9894,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_macroeconomics/validation-00000-of-00001.parquet",
+      "rows": 43,
+      "split": "validation",
+      "subject": "high_school_macroeconomics"
+    },
+    {
+      "bytes": 4501,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_mathematics/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "high_school_mathematics"
+    },
+    {
+      "bytes": 33722,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_mathematics/test-00000-of-00001.parquet",
+      "rows": 270,
+      "split": "test",
+      "subject": "high_school_mathematics"
+    },
+    {
+      "bytes": 6987,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_mathematics/validation-00000-of-00001.parquet",
+      "rows": 29,
+      "split": "validation",
+      "subject": "high_school_mathematics"
+    },
+    {
+      "bytes": 3835,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_microeconomics/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "high_school_microeconomics"
+    },
+    {
+      "bytes": 38827,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_microeconomics/test-00000-of-00001.parquet",
+      "rows": 238,
+      "split": "test",
+      "subject": "high_school_microeconomics"
+    },
+    {
+      "bytes": 7223,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_microeconomics/validation-00000-of-00001.parquet",
+      "rows": 26,
+      "split": "validation",
+      "subject": "high_school_microeconomics"
+    },
+    {
+      "bytes": 4571,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_physics/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "high_school_physics"
+    },
+    {
+      "bytes": 32950,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_physics/test-00000-of-00001.parquet",
+      "rows": 151,
+      "split": "test",
+      "subject": "high_school_physics"
+    },
+    {
+      "bytes": 7962,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_physics/validation-00000-of-00001.parquet",
+      "rows": 17,
+      "split": "validation",
+      "subject": "high_school_physics"
+    },
+    {
+      "bytes": 5185,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_psychology/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "high_school_psychology"
+    },
+    {
+      "bytes": 92752,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_psychology/test-00000-of-00001.parquet",
+      "rows": 545,
+      "split": "test",
+      "subject": "high_school_psychology"
+    },
+    {
+      "bytes": 15221,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_psychology/validation-00000-of-00001.parquet",
+      "rows": 60,
+      "split": "validation",
+      "subject": "high_school_psychology"
+    },
+    {
+      "bytes": 6074,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_statistics/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "high_school_statistics"
+    },
+    {
+      "bytes": 57998,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_statistics/test-00000-of-00001.parquet",
+      "rows": 216,
+      "split": "test",
+      "subject": "high_school_statistics"
+    },
+    {
+      "bytes": 10852,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_statistics/validation-00000-of-00001.parquet",
+      "rows": 23,
+      "split": "validation",
+      "subject": "high_school_statistics"
+    },
+    {
+      "bytes": 17838,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_us_history/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "high_school_us_history"
+    },
+    {
+      "bytes": 154916,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_us_history/test-00000-of-00001.parquet",
+      "rows": 204,
+      "split": "test",
+      "subject": "high_school_us_history"
+    },
+    {
+      "bytes": 27289,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_us_history/validation-00000-of-00001.parquet",
+      "rows": 22,
+      "split": "validation",
+      "subject": "high_school_us_history"
+    },
+    {
+      "bytes": 10248,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_world_history/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "high_school_world_history"
+    },
+    {
+      "bytes": 201554,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_world_history/test-00000-of-00001.parquet",
+      "rows": 237,
+      "split": "test",
+      "subject": "high_school_world_history"
+    },
+    {
+      "bytes": 38500,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "high_school_world_history/validation-00000-of-00001.parquet",
+      "rows": 26,
+      "split": "validation",
+      "subject": "high_school_world_history"
+    },
+    {
+      "bytes": 3667,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "human_aging/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "human_aging"
+    },
+    {
+      "bytes": 31249,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "human_aging/test-00000-of-00001.parquet",
+      "rows": 223,
+      "split": "test",
+      "subject": "human_aging"
+    },
+    {
+      "bytes": 6280,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "human_aging/validation-00000-of-00001.parquet",
+      "rows": 23,
+      "split": "validation",
+      "subject": "human_aging"
+    },
+    {
+      "bytes": 4085,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "human_sexuality/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "human_sexuality"
+    },
+    {
+      "bytes": 23185,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "human_sexuality/test-00000-of-00001.parquet",
+      "rows": 131,
+      "split": "test",
+      "subject": "human_sexuality"
+    },
+    {
+      "bytes": 5263,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "human_sexuality/validation-00000-of-00001.parquet",
+      "rows": 12,
+      "split": "validation",
+      "subject": "human_sexuality"
+    },
+    {
+      "bytes": 4957,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "international_law/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "international_law"
+    },
+    {
+      "bytes": 29512,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "international_law/test-00000-of-00001.parquet",
+      "rows": 121,
+      "split": "test",
+      "subject": "international_law"
+    },
+    {
+      "bytes": 7123,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "international_law/validation-00000-of-00001.parquet",
+      "rows": 13,
+      "split": "validation",
+      "subject": "international_law"
+    },
+    {
+      "bytes": 4047,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "jurisprudence/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "jurisprudence"
+    },
+    {
+      "bytes": 23324,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "jurisprudence/test-00000-of-00001.parquet",
+      "rows": 108,
+      "split": "test",
+      "subject": "jurisprudence"
+    },
+    {
+      "bytes": 6207,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "jurisprudence/validation-00000-of-00001.parquet",
+      "rows": 11,
+      "split": "validation",
+      "subject": "jurisprudence"
+    },
+    {
+      "bytes": 4123,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "logical_fallacies/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "logical_fallacies"
+    },
+    {
+      "bytes": 23022,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "logical_fallacies/test-00000-of-00001.parquet",
+      "rows": 163,
+      "split": "test",
+      "subject": "logical_fallacies"
+    },
+    {
+      "bytes": 6524,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "logical_fallacies/validation-00000-of-00001.parquet",
+      "rows": 18,
+      "split": "validation",
+      "subject": "logical_fallacies"
+    },
+    {
+      "bytes": 5247,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "machine_learning/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "machine_learning"
+    },
+    {
+      "bytes": 19699,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "machine_learning/test-00000-of-00001.parquet",
+      "rows": 112,
+      "split": "test",
+      "subject": "machine_learning"
+    },
+    {
+      "bytes": 6175,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "machine_learning/validation-00000-of-00001.parquet",
+      "rows": 11,
+      "split": "validation",
+      "subject": "machine_learning"
+    },
+    {
+      "bytes": 3609,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "management/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "management"
+    },
+    {
+      "bytes": 14722,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "management/test-00000-of-00001.parquet",
+      "rows": 103,
+      "split": "test",
+      "subject": "management"
+    },
+    {
+      "bytes": 4497,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "management/validation-00000-of-00001.parquet",
+      "rows": 11,
+      "split": "validation",
+      "subject": "management"
+    },
+    {
+      "bytes": 4282,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "marketing/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "marketing"
+    },
+    {
+      "bytes": 37259,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "marketing/test-00000-of-00001.parquet",
+      "rows": 234,
+      "split": "test",
+      "subject": "marketing"
+    },
+    {
+      "bytes": 8206,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "marketing/validation-00000-of-00001.parquet",
+      "rows": 25,
+      "split": "validation",
+      "subject": "marketing"
+    },
+    {
+      "bytes": 3766,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "medical_genetics/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "medical_genetics"
+    },
+    {
+      "bytes": 16379,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "medical_genetics/test-00000-of-00001.parquet",
+      "rows": 100,
+      "split": "test",
+      "subject": "medical_genetics"
+    },
+    {
+      "bytes": 5630,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "medical_genetics/validation-00000-of-00001.parquet",
+      "rows": 11,
+      "split": "validation",
+      "subject": "medical_genetics"
+    },
+    {
+      "bytes": 3369,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "miscellaneous/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "miscellaneous"
+    },
+    {
+      "bytes": 98558,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "miscellaneous/test-00000-of-00001.parquet",
+      "rows": 783,
+      "split": "test",
+      "subject": "miscellaneous"
+    },
+    {
+      "bytes": 13170,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "miscellaneous/validation-00000-of-00001.parquet",
+      "rows": 86,
+      "split": "validation",
+      "subject": "miscellaneous"
+    },
+    {
+      "bytes": 4407,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "moral_disputes/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "moral_disputes"
+    },
+    {
+      "bytes": 60902,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "moral_disputes/test-00000-of-00001.parquet",
+      "rows": 346,
+      "split": "test",
+      "subject": "moral_disputes"
+    },
+    {
+      "bytes": 10734,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "moral_disputes/validation-00000-of-00001.parquet",
+      "rows": 38,
+      "split": "validation",
+      "subject": "moral_disputes"
+    },
+    {
+      "bytes": 5137,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "moral_scenarios/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "moral_scenarios"
+    },
+    {
+      "bytes": 89816,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "moral_scenarios/test-00000-of-00001.parquet",
+      "rows": 895,
+      "split": "test",
+      "subject": "moral_scenarios"
+    },
+    {
+      "bytes": 14916,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "moral_scenarios/validation-00000-of-00001.parquet",
+      "rows": 100,
+      "split": "validation",
+      "subject": "moral_scenarios"
+    },
+    {
+      "bytes": 4987,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "nutrition/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "nutrition"
+    },
+    {
+      "bytes": 55041,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "nutrition/test-00000-of-00001.parquet",
+      "rows": 306,
+      "split": "test",
+      "subject": "nutrition"
+    },
+    {
+      "bytes": 9022,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "nutrition/validation-00000-of-00001.parquet",
+      "rows": 33,
+      "split": "validation",
+      "subject": "nutrition"
+    },
+    {
+      "bytes": 4202,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "philosophy/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "philosophy"
+    },
+    {
+      "bytes": 48556,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "philosophy/test-00000-of-00001.parquet",
+      "rows": 311,
+      "split": "test",
+      "subject": "philosophy"
+    },
+    {
+      "bytes": 9154,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "philosophy/validation-00000-of-00001.parquet",
+      "rows": 34,
+      "split": "validation",
+      "subject": "philosophy"
+    },
+    {
+      "bytes": 4615,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "prehistory/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "prehistory"
+    },
+    {
+      "bytes": 54316,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "prehistory/test-00000-of-00001.parquet",
+      "rows": 324,
+      "split": "test",
+      "subject": "prehistory"
+    },
+    {
+      "bytes": 9895,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "prehistory/validation-00000-of-00001.parquet",
+      "rows": 35,
+      "split": "validation",
+      "subject": "prehistory"
+    },
+    {
+      "bytes": 4887,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "professional_accounting/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "professional_accounting"
+    },
+    {
+      "bytes": 69518,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "professional_accounting/test-00000-of-00001.parquet",
+      "rows": 282,
+      "split": "test",
+      "subject": "professional_accounting"
+    },
+    {
+      "bytes": 12892,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "professional_accounting/validation-00000-of-00001.parquet",
+      "rows": 31,
+      "split": "validation",
+      "subject": "professional_accounting"
+    },
+    {
+      "bytes": 15139,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "professional_law/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "professional_law"
+    },
+    {
+      "bytes": 1037057,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "professional_law/test-00000-of-00001.parquet",
+      "rows": 1534,
+      "split": "test",
+      "subject": "professional_law"
+    },
+    {
+      "bytes": 115632,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "professional_law/validation-00000-of-00001.parquet",
+      "rows": 170,
+      "split": "validation",
+      "subject": "professional_law"
+    },
+    {
+      "bytes": 8445,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "professional_medicine/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "professional_medicine"
+    },
+    {
+      "bytes": 124933,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "professional_medicine/test-00000-of-00001.parquet",
+      "rows": 272,
+      "split": "test",
+      "subject": "professional_medicine"
+    },
+    {
+      "bytes": 19864,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "professional_medicine/validation-00000-of-00001.parquet",
+      "rows": 31,
+      "split": "validation",
+      "subject": "professional_medicine"
+    },
+    {
+      "bytes": 4691,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "professional_psychology/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "professional_psychology"
+    },
+    {
+      "bytes": 132551,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "professional_psychology/test-00000-of-00001.parquet",
+      "rows": 612,
+      "split": "test",
+      "subject": "professional_psychology"
+    },
+    {
+      "bytes": 22115,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "professional_psychology/validation-00000-of-00001.parquet",
+      "rows": 69,
+      "split": "validation",
+      "subject": "professional_psychology"
+    },
+    {
+      "bytes": 4435,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "public_relations/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "public_relations"
+    },
+    {
+      "bytes": 20617,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "public_relations/test-00000-of-00001.parquet",
+      "rows": 110,
+      "split": "test",
+      "subject": "public_relations"
+    },
+    {
+      "bytes": 6448,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "public_relations/validation-00000-of-00001.parquet",
+      "rows": 12,
+      "split": "validation",
+      "subject": "public_relations"
+    },
+    {
+      "bytes": 7487,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "security_studies/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "security_studies"
+    },
+    {
+      "bytes": 114103,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "security_studies/test-00000-of-00001.parquet",
+      "rows": 245,
+      "split": "test",
+      "subject": "security_studies"
+    },
+    {
+      "bytes": 18668,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "security_studies/validation-00000-of-00001.parquet",
+      "rows": 27,
+      "split": "validation",
+      "subject": "security_studies"
+    },
+    {
+      "bytes": 4205,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "sociology/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "sociology"
+    },
+    {
+      "bytes": 43920,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "sociology/test-00000-of-00001.parquet",
+      "rows": 201,
+      "split": "test",
+      "subject": "sociology"
+    },
+    {
+      "bytes": 8355,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "sociology/validation-00000-of-00001.parquet",
+      "rows": 22,
+      "split": "validation",
+      "subject": "sociology"
+    },
+    {
+      "bytes": 4219,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "us_foreign_policy/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "us_foreign_policy"
+    },
+    {
+      "bytes": 19540,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "us_foreign_policy/test-00000-of-00001.parquet",
+      "rows": 100,
+      "split": "test",
+      "subject": "us_foreign_policy"
+    },
+    {
+      "bytes": 5268,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "us_foreign_policy/validation-00000-of-00001.parquet",
+      "rows": 11,
+      "split": "validation",
+      "subject": "us_foreign_policy"
+    },
+    {
+      "bytes": 3872,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "virology/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "virology"
+    },
+    {
+      "bytes": 27310,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "virology/test-00000-of-00001.parquet",
+      "rows": 166,
+      "split": "test",
+      "subject": "virology"
+    },
+    {
+      "bytes": 7047,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "virology/validation-00000-of-00001.parquet",
+      "rows": 18,
+      "split": "validation",
+      "subject": "virology"
+    },
+    {
+      "bytes": 3303,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "world_religions/dev-00000-of-00001.parquet",
+      "rows": 5,
+      "split": "dev",
+      "subject": "world_religions"
+    },
+    {
+      "bytes": 18922,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "world_religions/test-00000-of-00001.parquet",
+      "rows": 171,
+      "split": "test",
+      "subject": "world_religions"
+    },
+    {
+      "bytes": 4940,
+      "columns": [
+        "question",
+        "subject",
+        "choices",
+        "answer"
+      ],
+      "exclusion_reason": null,
+      "relative_path": "world_religions/validation-00000-of-00001.parquet",
+      "rows": 19,
+      "split": "validation",
+      "subject": "world_religions"
+    }
+  ],
+  "excluded_file_count": 5,
+  "parquet_file_count": 176,
+  "revision": "c30699e8356da336a370243923dbaf21066bb9fe"
+}

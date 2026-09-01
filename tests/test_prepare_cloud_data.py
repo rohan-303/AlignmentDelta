@@ -90,3 +90,37 @@ def test_refusal_validator_requires_nested_pinned_layout(monkeypatch: pytest.Mon
     result = hydration._validate_refusal(tmp_path)
     assert result["counts"] == counts
     assert all(relative.replace("\\", "/").startswith("dataset/splits/") for relative in result["files"])
+
+
+def test_partial_mmlu_cache_rematerializes_without_redownload(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    for spec in hydration.SOURCES:
+        destination = tmp_path / spec.name / spec.revision
+        destination.mkdir(parents=True)
+        hydration._write_metadata(destination, spec)
+    monkeypatch.setattr(hydration, "_hydrate_github", lambda spec, destination: pytest.fail("redownload"))
+    monkeypatch.setattr(hydration, "_hydrate_dataset", lambda spec, destination: pytest.fail("redownload"))
+    monkeypatch.setattr(hydration, "_validate_refusal", lambda destination: {})
+    monkeypatch.setattr(hydration, "_validate_xstest", lambda destination, repo_root: {})
+    def incomplete_materialization(destination: Path, repo_root: Path) -> dict[str, object]:
+        raise RuntimeError("HYDRATED_CACHE_REQUIRED")
+
+    monkeypatch.setattr(hydration, "_verify_mmlu_materialized", incomplete_materialization)
+    repaired: list[Path] = []
+    monkeypatch.setattr(
+        hydration,
+        "_materialize_mmlu",
+        lambda destination, repo_root: repaired.append(destination) or {"repaired": True},
+    )
+    result = hydration.hydrate(tmp_path, repo_root=Path.cwd())
+    assert result["mmlu"]["repaired"] is True
+    assert repaired == [tmp_path / "mmlu" / hydration.MMLU_REVISION]
+
+
+def test_mmlu_scope_excludes_aggregate_and_auxiliary_paths(tmp_path: Path) -> None:
+    universe = {"abstract_algebra/dev-00000-of-00001.parquet"}
+    accepted = tmp_path / "abstract_algebra" / "dev-00000-of-00001.parquet"
+    aggregate = tmp_path / "all" / "dev-00000-of-00001.parquet"
+    auxiliary = tmp_path / "auxiliary_train" / "train-00000-of-00001.parquet"
+    assert hydration._classify_mmlu_path(accepted, tmp_path, universe) == ("abstract_algebra", "dev")
+    assert hydration._classify_mmlu_path(aggregate, tmp_path, universe) is None
+    assert hydration._classify_mmlu_path(auxiliary, tmp_path, universe) is None

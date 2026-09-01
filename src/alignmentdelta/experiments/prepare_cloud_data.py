@@ -253,41 +253,85 @@ def _validate_xstest(destination: Path, repo_root: Path) -> dict[str, Any]:
     return {"rows": len(rows), "safe": 250, "unsafe": 200, "file": _digest(paths[0])}
 
 
-def _iter_mmlu_rows(destination: Path) -> list[dict[str, Any]]:
+def _mmlu_parquet_universe(repo_root: Path) -> set[str]:
+    manifest = json.loads((repo_root / "configs/manifests/mmlu_source_files.json").read_text(encoding="utf-8"))
+    paths = {str(item["path"]) for item in manifest}
+    if len(paths) != 171:
+        raise RuntimeError("MMLU_SOURCE_STRUCTURE_MISMATCH")
+    return paths
+
+
+def _classify_mmlu_path(path: Path, destination: Path, universe: set[str]) -> tuple[str, str] | None:
+    relative = path.relative_to(destination).as_posix()
+    if relative not in universe:
+        return None
+    parts = relative.split("/")
+    if len(parts) != 2:
+        raise RuntimeError("MMLU_SOURCE_STRUCTURE_MISMATCH")
+    subject, filename = parts
+    split = filename.split("-", 1)[0]
+    if split not in {"dev", "validation", "test"} or not filename.endswith(".parquet"):
+        raise RuntimeError("MMLU_SOURCE_STRUCTURE_MISMATCH")
+    return subject, split
+
+
+def _iter_mmlu_rows(destination: Path, repo_root: Path) -> list[dict[str, Any]]:
     try:
         import pandas as pd  # type: ignore[import-untyped]
     except ImportError as exc:
         raise RuntimeError("MMLU_DATASET_READER_REQUIRED") from exc
-    rows: list[dict[str, Any]] = []
+    universe = _mmlu_parquet_universe(repo_root)
+    accepted: list[tuple[Path, tuple[str, str]]] = []
     for path in sorted(destination.rglob("*.parquet")):
-        split = path.name.split("-", 1)[0]
-        subject = path.parent.name
-        for index, row in pd.read_parquet(path).iterrows():
-            options = list(row["choices"])
-            answer = int(row["answer"])
-            question = str(row["question"])
-            if len(options) != 4 or not all(isinstance(x, str) for x in options) or not 0 <= answer < 4:
-                raise RuntimeError("MMLU_SOURCE_RECORD_INVALID")
-            full_hash = _canonical_hash(question, options, answer)
-            rows.append(
-                {
-                    "stable_id": f"mmlu:{subject}:{split}:{index}:{full_hash[:16]}",
-                    "subject": subject,
-                    "split": split,
-                    "source_index": int(index),
-                    "content_hash": full_hash,
-                    "answer": answer,
-                    "question": question,
-                    "options": options,
-                }
-            )
+        classification = _classify_mmlu_path(path, destination, universe)
+        if classification is not None:
+            accepted.append((path, classification))
+    if {path.relative_to(destination).as_posix() for path, _ in accepted} != universe:
+        raise RuntimeError("MMLU_SOURCE_STRUCTURE_MISMATCH")
+    grouped: dict[tuple[str, str], list[Path]] = {}
+    for path, classification in accepted:
+        grouped.setdefault(classification, []).append(path)
+    rows: list[dict[str, Any]] = []
+    for (subject, split), paths in sorted(grouped.items()):
+        source_index = 0
+        for path in paths:
+            frame = pd.read_parquet(path)
+            required = {"question", "choices", "answer"}
+            if not required <= set(frame.columns):
+                raise RuntimeError("MMLU_SOURCE_SCHEMA_MISMATCH")
+            if "subject" in frame.columns and any(str(value) != subject for value in frame["subject"]):
+                raise RuntimeError("MMLU_SOURCE_SCHEMA_MISMATCH")
+            for _, row in frame.iterrows():
+                options = list(row["choices"])
+                answer = int(row["answer"])
+                question = str(row["question"])
+                if len(options) != 4 or not all(isinstance(x, str) for x in options) or not 0 <= answer < 4:
+                    raise RuntimeError("MMLU_SOURCE_RECORD_INVALID")
+                full_hash = _canonical_hash(question, options, answer)
+                rows.append(
+                    {
+                        "stable_id": f"mmlu:{subject}:{split}:{source_index}:{full_hash[:16]}",
+                        "subject": subject,
+                        "split": split,
+                        "source_index": source_index,
+                        "content_hash": full_hash,
+                        "answer": answer,
+                        "question": question,
+                        "options": options,
+                    }
+                )
+                source_index += 1
+    stable_ids = [row["stable_id"] for row in rows]
+    source_keys = [(row["subject"], row["split"], row["source_index"]) for row in rows]
+    if len(stable_ids) != len(set(stable_ids)) or len(source_keys) != len(set(source_keys)):
+        raise RuntimeError("MMLU_STABLE_ID_PARITY_MISMATCH")
     return rows
 
 
 def _materialize_mmlu(destination: Path, repo_root: Path) -> dict[str, Any]:
     cal_manifest = _load_manifest(repo_root, "configs/manifests/mmlu_exploratory_pilot.toml")
     pair_manifest = _load_manifest(repo_root, "configs/manifests/consistency_pairs.toml")
-    rows = _iter_mmlu_rows(destination)
+    rows = _iter_mmlu_rows(destination, repo_root)
     by_id = {row["stable_id"]: row for row in rows}
     calibration = [by_id.get(item_id) for item_id in cal_manifest["ids"]]
     if any(item is None for item in calibration):
@@ -340,7 +384,7 @@ def _materialize_mmlu(destination: Path, repo_root: Path) -> dict[str, Any]:
 
 
 def _verify_mmlu_materialized(destination: Path, repo_root: Path) -> dict[str, Any]:
-    rows = _iter_mmlu_rows(destination)
+    rows = _iter_mmlu_rows(destination, repo_root)
     if (
         len({row["subject"] for row in rows}) != 57
         or len(rows) != 15858
@@ -394,13 +438,17 @@ def hydrate(cache_root: Path, repo_root: Path | None = None, verify_only: bool =
                     _hydrate_dataset(spec, destination)
                 else:
                     raise RuntimeError("SOURCE_BACKEND_UNSUPPORTED")
-                _write_metadata(destination, spec)
             if spec.name == "refusal_direction":
                 validation = _validate_refusal(destination)
             elif spec.name == "xstest":
                 validation = _validate_xstest(destination, repo_root)
             elif reused:
-                validation = _verify_mmlu_materialized(destination, repo_root)
+                try:
+                    validation = _verify_mmlu_materialized(destination, repo_root)
+                except RuntimeError:
+                    if verify_only:
+                        raise
+                    validation = _materialize_mmlu(destination, repo_root)
             else:
                 validation = _materialize_mmlu(destination, repo_root)
             if not verify_only:
