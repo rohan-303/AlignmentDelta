@@ -9,6 +9,8 @@ from typing import Any
 
 import torch
 
+from alignmentdelta.experiments.source_layout import REFUSAL_REVISION
+
 
 def tensor_hash(tensor: torch.Tensor) -> str:
     value = tensor.detach().to(device="cpu", dtype=torch.float64).contiguous().numpy().tobytes()
@@ -31,7 +33,7 @@ def direction_artifact(
         "tokenizer_revision": tokenizer_revision,
         "chat_template_hash": template_hash,
         "direction_source": "andyrdt/refusal_direction",
-        "direction_revision": "9d852fae1a9121c78b29142de733cb1340770cc3",
+        "direction_revision": REFUSAL_REVISION,
         "train_manifest_hash": source_manifest_hash,
         "validation_manifest_hash": source_manifest_hash,
         "engineering_subset_hash": subset_hash,

@@ -18,11 +18,14 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 
-from alignmentdelta.experiments.source_layout import REFUSAL_SPLIT_COUNTS, REFUSAL_SPLIT_SHA256, refusal_split_paths
-
-REFUSAL_REVISION = "9d852fae1a9121c78b29142de733cb1340770cc3"
-XSTEST_REVISION = "d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d"
-MMLU_REVISION = "c30699e8356da336a370243923dbaf21066bb9fe"
+from alignmentdelta.experiments.source_layout import (
+    MMLU_REVISION,
+    REFUSAL_REVISION,
+    REFUSAL_SPLIT_COUNTS,
+    REFUSAL_SPLIT_SHA256,
+    XSTEST_REVISION,
+    refusal_split_paths,
+)
 
 FROZEN_PAIRS = {
     "mmlu:abstract_algebra:validation:0:71f2e99c0471b412": (
@@ -261,6 +264,20 @@ def _mmlu_parquet_universe(repo_root: Path) -> set[str]:
     return paths
 
 
+def _mmlu_subject_categories(repo_root: Path, universe: set[str]) -> dict[str, str]:
+    import tomllib
+
+    with (repo_root / "configs/manifests/mmlu_subject_categories.toml").open("rb") as handle:
+        categories = tomllib.load(handle)["subjects"]
+    subjects = {path.split("/", 1)[0] for path in universe}
+    if set(categories) != subjects or len(categories) != 57:
+        raise RuntimeError("MMLU_SUBJECT_CATEGORY_MISMATCH")
+    allowed = {"STEM", "humanities", "social_sciences", "other"}
+    if set(categories.values()) - allowed:
+        raise RuntimeError("MMLU_SUBJECT_CATEGORY_MISMATCH")
+    return {str(subject): str(category) for subject, category in categories.items()}
+
+
 def _classify_mmlu_path(path: Path, destination: Path, universe: set[str]) -> tuple[str, str] | None:
     relative = path.relative_to(destination).as_posix()
     if relative not in universe:
@@ -281,6 +298,7 @@ def _iter_mmlu_rows(destination: Path, repo_root: Path) -> list[dict[str, Any]]:
     except ImportError as exc:
         raise RuntimeError("MMLU_DATASET_READER_REQUIRED") from exc
     universe = _mmlu_parquet_universe(repo_root)
+    categories = _mmlu_subject_categories(repo_root, universe)
     accepted: list[tuple[Path, tuple[str, str]]] = []
     for path in sorted(destination.rglob("*.parquet")):
         classification = _classify_mmlu_path(path, destination, universe)
@@ -312,6 +330,7 @@ def _iter_mmlu_rows(destination: Path, repo_root: Path) -> list[dict[str, Any]]:
                     {
                         "stable_id": f"mmlu:{subject}:{split}:{source_index}:{full_hash[:16]}",
                         "subject": subject,
+                        "broad_category": categories[subject],
                         "split": split,
                         "source_index": source_index,
                         "content_hash": full_hash,
@@ -360,6 +379,7 @@ def _materialize_mmlu(destination: Path, repo_root: Path) -> dict[str, Any]:
                 "source_hash": source["content_hash"],
                 "variant_hash": variant_hash,
                 "subject": source["subject"],
+                "broad_category": source["broad_category"],
                 "split": source["split"],
                 "source_index": source["source_index"],
                 "source_answer": source["answer"],
@@ -401,10 +421,22 @@ def _verify_mmlu_materialized(destination: Path, repo_root: Path) -> dict[str, A
         raise RuntimeError("HYDRATED_CACHE_REQUIRED")
     calibration = json.loads(cal_path.read_text(encoding="utf-8"))
     pairs = json.loads(pair_path.read_text(encoding="utf-8"))
+    categories = _mmlu_subject_categories(repo_root, _mmlu_parquet_universe(repo_root))
     if [item.get("stable_id") for item in calibration] != cal_manifest["ids"]:
+        raise RuntimeError("MMLU_PILOT_MATERIALIZATION_MISMATCH")
+    if any(item.get("broad_category") != categories.get(item.get("subject")) for item in calibration):
+        raise RuntimeError("MMLU_SUBJECT_CATEGORY_MISMATCH")
+    categories_expected = {"STEM", "humanities", "social_sciences", "other"}
+    coverage = {
+        category: sum(item.get("broad_category") == category for item in calibration)
+        for category in categories_expected
+    }
+    if coverage != {"STEM": 3, "humanities": 3, "social_sciences": 3, "other": 3}:
         raise RuntimeError("MMLU_PILOT_MATERIALIZATION_MISMATCH")
     if [item.get("pair_id") for item in pairs] != pair_manifest["pair_ids"]:
         raise RuntimeError("CONSISTENCY_MATERIALIZATION_MISMATCH")
+    if any(item.get("broad_category") != categories.get(item.get("subject")) for item in pairs):
+        raise RuntimeError("MMLU_SUBJECT_CATEGORY_MISMATCH")
     return {"subjects": 57, "total": len(rows), "calibration": len(calibration), "pairs": len(pairs)}
 
 

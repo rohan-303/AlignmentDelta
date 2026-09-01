@@ -2,7 +2,12 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
+
+REFUSAL_REVISION = "9d852fae1a9121c78b29142de733cb1340770cc3"
+XSTEST_REVISION = "d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d"
+MMLU_REVISION = "c30699e8356da336a370243923dbaf21066bb9fe"
 
 REFUSAL_SPLIT_FILES = {
     "harmful_train": "dataset/splits/harmful_train.json",
@@ -35,3 +40,9 @@ REFUSAL_SPLIT_COUNTS = {
 def refusal_split_paths(source_root: Path) -> dict[str, Path]:
     """Return the exact frozen refusal split paths under a hydrated checkout."""
     return {name: source_root / relative for name, relative in REFUSAL_SPLIT_FILES.items()}
+
+
+def refusal_revision_root(cache_root: Path | None = None) -> Path:
+    default = Path.home() / ".cache" / "alignmentdelta" / "source_data"
+    root = cache_root or Path(os.environ.get("ALIGNMENTDELTA_CACHE", default))
+    return root / "refusal_direction" / REFUSAL_REVISION

@@ -9,10 +9,11 @@ from typing import Any, cast
 
 import torch
 
+from alignmentdelta.experiments.source_layout import refusal_revision_root, refusal_split_paths
+
 from .capture import OnlineMeanDifference
 
-CACHE = Path.home() / ".cache" / "alignmentdelta" / "source_data" / "refusal_direction"
-SOURCE_FILES = {"harmful": "harmful_train.json", "harmless": "harmless_train.json"}
+SOURCE_FILES = {"harmful": "harmful_train", "harmless": "harmless_train"}
 
 
 def stable_id(record: dict[str, Any]) -> str:
@@ -20,10 +21,12 @@ def stable_id(record: dict[str, Any]) -> str:
     return "rd:" + hashlib.sha256(canonical).hexdigest()[:24]
 
 
-def engineering_subset() -> dict[str, list[dict[str, Any]]]:
+def engineering_subset(cache_root: Path | None = None) -> dict[str, list[dict[str, Any]]]:
     selected: dict[str, list[dict[str, Any]]] = {}
-    for role, filename in SOURCE_FILES.items():
-        records = json.loads((CACHE / filename).read_text(encoding="utf-8"))
+    source_root = refusal_revision_root(cache_root)
+    paths = refusal_split_paths(source_root)
+    for role, split_name in SOURCE_FILES.items():
+        records = json.loads(paths[split_name].read_text(encoding="utf-8"))
         indexed = sorted(((stable_id(record), record) for record in records), key=lambda pair: pair[0])
         selected[role] = [record for _, record in indexed[:16]]
     return {

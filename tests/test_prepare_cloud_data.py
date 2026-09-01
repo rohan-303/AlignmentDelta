@@ -124,3 +124,10 @@ def test_mmlu_scope_excludes_aggregate_and_auxiliary_paths(tmp_path: Path) -> No
     assert hydration._classify_mmlu_path(accepted, tmp_path, universe) == ("abstract_algebra", "dev")
     assert hydration._classify_mmlu_path(aggregate, tmp_path, universe) is None
     assert hydration._classify_mmlu_path(auxiliary, tmp_path, universe) is None
+
+
+def test_mmlu_category_manifest_is_exact_and_frozen() -> None:
+    universe = hydration._mmlu_parquet_universe(Path.cwd())
+    categories = hydration._mmlu_subject_categories(Path.cwd(), universe)
+    assert len(categories) == 57
+    assert set(categories.values()) <= {"STEM", "humanities", "social_sciences", "other"}

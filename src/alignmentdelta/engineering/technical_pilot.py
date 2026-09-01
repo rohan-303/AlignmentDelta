@@ -17,13 +17,13 @@ from typing import Any, cast
 
 import psutil  # type: ignore[import-untyped]
 import torch
-from huggingface_hub import snapshot_download
+
+from alignmentdelta.experiments.source_layout import REFUSAL_REVISION, refusal_revision_root, refusal_split_paths
 
 from .artifacts import tensor_hash, write_artifact
 from .capture import OnlineMeanDifference, ResidualCapture
 from .controls import orthogonal_control
-from .direction import render_messages, stable_id
-from .model_loader import file_hashes, load_model, write_json
+from .direction import SOURCE_FILES, render_messages, stable_id
 from .model_registry import ModelSpec, get_model_spec
 from .projection import transform_block_output
 from .qwen_adapter import Qwen2Adapter
@@ -67,8 +67,11 @@ def _git_commit() -> str:
     return subprocess.run(["git", "rev-parse", "HEAD"], check=True, capture_output=True, text=True).stdout.strip()
 
 
-def _load_source(name: str) -> list[dict[str, Any]]:
-    path = Path.home() / ".cache" / "alignmentdelta" / "source_data" / "refusal_direction" / name
+def _load_source(name: str, cache_root: Path | None = None) -> list[dict[str, Any]]:
+    split_name = name.removesuffix(".json")
+    if split_name not in SOURCE_FILES.values():
+        raise RuntimeError("REFUSAL_SOURCE_LAYOUT_MISMATCH")
+    path = refusal_split_paths(refusal_revision_root(cache_root))[split_name]
     return cast(list[dict[str, Any]], json.loads(path.read_text(encoding="utf-8")))
 
 
@@ -620,6 +623,10 @@ def run(
     output_root.mkdir(parents=True, exist_ok=True)
     spec = model_spec or get_model_spec()
     git_commit = _git_commit()
+    from huggingface_hub import snapshot_download
+
+    from .model_loader import file_hashes, load_model, write_json
+
     if not torch.cuda.is_available():
         raise RuntimeError("Step 3.1 requires CUDA")
     dtype_name = "bf16" if torch.cuda.is_bf16_supported() else "fp16"
@@ -725,7 +732,7 @@ def run(
             "model_revision": spec.revision,
             "tokenizer_revision": spec.tokenizer_revision,
             "chat_template_hash": loaded.metadata["chat_template_hash"],
-            "direction_revision": "9d852fae1a9121c78b29142de733cb1340770cc3",
+            "direction_revision": REFUSAL_REVISION,
             "selection_manifest_hash": policy["sha256"],
             "layer": layer,
             "position_rule": "final non-padding token",
