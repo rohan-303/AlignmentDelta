@@ -50,7 +50,7 @@ def test_operation_accounting_counts_option_sequences_not_logical_states() -> No
 def test_direction_hash_gate_rejects_task_hash_mismatch() -> None:
     with pytest.raises(RuntimeError, match="DIRECTION_RECONSTRUCTION_MISMATCH"):
         direction_hash_gate("0" * 64)
-    assert len(EXPECTED_DIRECTION_SHA256) == 64
+    assert EXPECTED_DIRECTION_SHA256 == "286147ed00c828028d6856e5cab4e87ed5730e1e2f6f6fff047f2d3bb71a84b1"
 
 
 def test_sha256_identity_fields_reject_malformed_values() -> None:
