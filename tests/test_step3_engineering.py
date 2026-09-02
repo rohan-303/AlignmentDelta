@@ -99,6 +99,15 @@ def test_near_zero_direction_rejected() -> None:
         acc.direction()
 
 
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="requires CUDA")
+def test_projection_moves_direction_to_hidden_device() -> None:
+    hidden = torch.ones(1, 2, 4, device="cuda")
+    direction = torch.ones(4)
+    result = signed_projection(hidden, direction, alpha=0.0)
+    assert result.device == hidden.device
+    assert result.dtype == hidden.dtype
+
+
 def test_refusal_score_matches_frozen_equation() -> None:
     logits = torch.zeros(1, 1, 2122, dtype=torch.float32)
     logits[0, 0, 40] = 10.0

@@ -14,7 +14,7 @@ def signed_projection(hidden: torch.Tensor, direction: torch.Tensor, alpha: floa
     finite_alpha = torch.isfinite(torch.tensor(alpha))
     if not torch.isfinite(hidden).all() or not torch.isfinite(direction).all() or not finite_alpha:
         raise ValueError("projection inputs must be finite")
-    direction_work = direction.to(dtype=torch.float32)
+    direction_work = direction.to(device=hidden.device, dtype=torch.float32)
     hidden_work = hidden.to(dtype=torch.float32)
     dot = torch.sum(hidden_work * direction_work, dim=-1, keepdim=True)
     changed = hidden_work - float(alpha) * dot * direction_work
