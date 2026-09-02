@@ -19,16 +19,16 @@ from collections.abc import Callable
 from pathlib import Path
 from typing import Any, Protocol, cast
 
-MODEL_ID = "Qwen/Qwen2.5-3B-Instruct"
-MODEL_REVISION = "aa8e72537993ba99e69dfaafa59ed015b17504d1"
-DIRECTION_SHA256 = "5a8983bcbe4402096210485f8f9b0191eb35b3de84f46624e2dd9811fd09a3fe"
-CONTROL_SEEDS = (20260830, 20260831, 20260832, 20260833)
-CONTROL_SHA256 = {
-    20260830: "38d450a630cdef7e0c7345987bcc984b5c28297402578bd9186100b5b33209f0",
-    20260831: "009fa16cf1e3c536431bf04ff1b236ac684d640cd6a38069ded5327e93149720",
-    20260832: "f7f113762e73c16fbd84b9f9d784f1dae42412b92dac49c51db97a77838a992f",
-    20260833: "517b821e3aa16de00f89f61b9a7f5892d3fb530fbd7d199f80106d1cfb69a8dc",
-}
+from alignmentdelta.experiments.intervention_identity import (
+    CONTROL_SEEDS,
+    CONTROL_SHA256,
+    DIRECTION_SHA256,
+    HIDDEN_DIMENSION,
+    LAYER,
+    MODEL_ID,
+    MODEL_REVISION,
+)
+
 ALPHAS = (-0.5, 0.0, 0.25, 0.5, 0.75, 1.0, 1.25)
 NONZERO_ALPHAS = tuple(alpha for alpha in ALPHAS if alpha != 0.0)
 EXPECTED_LOGICAL_CONDITIONS = 1860
@@ -266,7 +266,7 @@ def bind_intervention_identity(row: dict[str, Any], technical_state: dict[str, A
     if intervention == "baseline":
         bound.update({"direction_sha256": None, "layer": None, "hidden_dimension": None, "control_sha256": None})
     elif intervention == "refusal":
-        bound.update({"direction": technical_state.get("direction"), "direction_sha256": DIRECTION_SHA256, "layer": 27, "hidden_dimension": 2048, "control_sha256": None})  # noqa: E501
+        bound.update({"direction": technical_state.get("direction"), "direction_sha256": DIRECTION_SHA256, "layer": LAYER, "hidden_dimension": HIDDEN_DIMENSION, "control_sha256": None})  # noqa: E501
     elif intervention == "control":
         seed = row.get("control_seed")
         if seed not in CONTROL_SHA256:
@@ -274,13 +274,13 @@ def bind_intervention_identity(row: dict[str, Any], technical_state: dict[str, A
         controls = technical_state.get("controls", {})
         if technical_state and seed not in controls:
             raise RuntimeError("CONTROL_IDENTITY_MISMATCH")
-        bound.update({"direction": controls.get(seed), "direction_sha256": DIRECTION_SHA256, "layer": 27, "hidden_dimension": 2048, "control_sha256": CONTROL_SHA256[seed]})  # noqa: E501
+        bound.update({"direction": controls.get(seed), "direction_sha256": DIRECTION_SHA256, "layer": LAYER, "hidden_dimension": HIDDEN_DIMENSION, "control_sha256": CONTROL_SHA256[seed]})  # noqa: E501
     else:
         raise RuntimeError("INTERVENTION_IDENTITY_MISMATCH")
     expected = technical_state
     if expected.get("direction_sha256") not in (None, DIRECTION_SHA256):
         raise RuntimeError("DIRECTION_IDENTITY_MISMATCH")
-    if expected.get("layer", 27) != 27 or expected.get("hidden_dimension", 2048) != 2048:
+    if expected.get("layer", LAYER) != LAYER or expected.get("hidden_dimension", HIDDEN_DIMENSION) != HIDDEN_DIMENSION:
         raise RuntimeError("INTERVENTION_IDENTITY_MISMATCH")
     return bound
 

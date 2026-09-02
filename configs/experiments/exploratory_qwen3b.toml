@@ -4,15 +4,15 @@ scientific_execution = true
 model_id = "Qwen/Qwen2.5-3B-Instruct"
 model_revision = "aa8e72537993ba99e69dfaafa59ed015b17504d1"
 layer = 27
-expected_direction_sha256 = "5a8983bcbe4402096210485f8f9b0191eb35b3de84f46624e2dd9811fd09a3fe"
+expected_direction_sha256 = "286147ed00c828028d6856e5cab4e87ed5730e1e2f6f6fff047f2d3bb71a84b1"
 operator = "h_prime = (I - alpha r r^T) h"
 alpha_grid = [-0.5, 0.0, 0.25, 0.5, 0.75, 1.0, 1.25]
 control_seeds = [20260830, 20260831, 20260832, 20260833]
 control_sha256 = [
-  "38d450a630cdef7e0c7345987bcc984b5c28297402578bd9186100b5b33209f0",
-  "009fa16cf1e3c536431bf04ff1b236ac684d640cd6a38069ded5327e93149720",
-  "f7f113762e73c16fbd84b9f9d784f1dae42412b92dac49c51db97a77838a992f",
-  "517b821e3aa16de00f89f61b9a7f5892d3fb530fbd7d199f80106d1cfb69a8dc",
+  "baea625387eee599d64fc5cc36ba19347908bb8ee89843dd5c51ccfa77c4e1dd",
+  "8a2bddd84b3e61e713e47b7cd22b78c9013b6316fca3eb9df65feed53955f6f9",
+  "381c985be766eb3b416b5fb49efba17e7de92f01d21131d4c85f29132537864a",
+  "120d1b40884bf919536f6fea3d653f6ecd5f133e30d43b9b2263ddaf6eba4984",
 ]
 batch_size = 1
 do_sample = false
