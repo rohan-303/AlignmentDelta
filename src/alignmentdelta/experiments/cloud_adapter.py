@@ -105,7 +105,7 @@ def parameter_sentinels(model: Any) -> dict[str, str]:
     for name in names:
         parameter = named.get(name)
         if parameter is not None:
-            result[name] = hashlib.sha256(parameter.detach().cpu().contiguous().numpy().tobytes()).hexdigest()
+            result[name] = hashlib.sha256(parameter.detach().float().cpu().contiguous().numpy().tobytes()).hexdigest()
     if len(result) < 3:
         raise RuntimeError("MODEL_RUNTIME_IDENTITY_MISMATCH")
     return result
